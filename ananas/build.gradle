@@ -38,7 +38,7 @@ dependencies {
     testImplementation "org.robolectric:robolectric:${robolectric_version}"
     implementation "androidx.appcompat:appcompat:${androidx_compat}"
     implementation "androidx.recyclerview:recyclerview:${androidx_version}"
-    implementation "com.github.eltos:simpledialogfragment:${simple_dialog_fragment_version}"
+    implementation "com.github.eltos:SimpleDialogFragments:${simple_dialog_fragment_version}"
     implementation("com.vanniktech:android-image-cropper:${cropper_version}")
     implementation "io.reactivex.rxjava2:rxjava:${rxjava_version}"
     implementation "io.reactivex.rxjava2:rxandroid:${rxandroid_version}"
