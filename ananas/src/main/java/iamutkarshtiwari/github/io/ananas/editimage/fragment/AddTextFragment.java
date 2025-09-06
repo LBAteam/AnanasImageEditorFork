@@ -53,7 +53,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     private ZoomLayout zoomLayout;
 
     private InputMethodManager inputMethodManager;
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     private List<View> addedViews;
 
     public static AddTextFragment newInstance() {
@@ -66,8 +66,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_edit_image_add_text, container, false);
         return mainView;
     }
@@ -75,27 +74,31 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        EditImageActivity editImageActivity = ensureEditActivity();
 
-        inputMethodManager = (InputMethodManager) editImageActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        ensureEditActivity();
 
-        textStickersParentView = editImageActivity.findViewById(R.id.text_sticker_panel);
-        textStickersParentView.setDrawingCacheEnabled(true);
-        addedViews = new ArrayList<>();
+        if (activity != null && mainView != null) {
+            inputMethodManager = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        zoomLayout = editImageActivity.findViewById(R.id.text_sticker_panel_frame);
+            textStickersParentView = activity.findViewById(R.id.text_sticker_panel);
+            textStickersParentView.setDrawingCacheEnabled(true);
+            addedViews = new ArrayList<>();
 
-        View backToMenu = mainView.findViewById(R.id.back_to_main);
-        backToMenu.setOnClickListener(new BackToMenuClick());
+            zoomLayout = activity.findViewById(R.id.text_sticker_panel_frame);
 
-        LinearLayout addTextButton = mainView.findViewById(R.id.add_text_btn);
-        addTextButton.setOnClickListener(this);
+            View backToMenu = mainView.findViewById(R.id.back_to_main);
+            backToMenu.setOnClickListener(new BackToMenuClick());
+
+            LinearLayout addTextButton = mainView.findViewById(R.id.add_text_btn);
+            addTextButton.setOnClickListener(this);
+        }
     }
 
     private void showTextEditDialog(final View rootView, String text, int colorCode) {
-        TextEditorDialogFragment textEditorDialogFragment =
-                TextEditorDialogFragment.show(activity, text, colorCode);
-        textEditorDialogFragment.setOnTextEditorListener((inputText, colorCode1) -> editText(rootView, inputText, colorCode1));
+        if (activity != null && rootView != null) {
+            TextEditorDialogFragment textEditorDialogFragment = TextEditorDialogFragment.show(activity, text, colorCode);
+            textEditorDialogFragment.setOnTextEditorListener((inputText, colorCode1) -> editText(rootView, inputText, colorCode1));
+        }
     }
 
     @Override
@@ -121,7 +124,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.add_text_btn) {
+        if (id == R.id.add_text_btn && activity != null) {
             TextEditorDialogFragment textEditorDialogFragment = TextEditorDialogFragment.show(activity);
             textEditorDialogFragment.setOnTextEditorListener(this::addText);
         }
@@ -129,18 +132,24 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
 
     public void hideInput() {
         if (getActivity() != null && getActivity().getCurrentFocus() != null && isInputMethodShow()) {
-            inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
-                    InputMethodManager.HIDE_NOT_ALWAYS);
+            inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 
     private boolean isInputMethodShow() {
-        return inputMethodManager.isActive();
+        if (inputMethodManager != null) {
+            return inputMethodManager.isActive();
+        }
+        else {
+            return false;
+        }
     }
 
     @Override
     public void onMainBitmapChange() {
-        textStickersParentView.updateImageBitmap(activity.getMainBit());
+        if (textStickersParentView != null && activity != null) {
+            textStickersParentView.updateImageBitmap(activity.getMainBit());
+        }
     }
 
     private final class BackToMenuClick implements OnClickListener {
@@ -154,48 +163,59 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     public void backToMain() {
         hideInput();
         clearAllStickers();
-        activity.mode = EditImageActivity.MODE_NONE;
-        activity.bottomGallery.setCurrentItem(MainMenuFragment.INDEX);
-        activity.mainImage.setVisibility(View.VISIBLE);
-        activity.bannerFlipper.showPrevious();
-        textStickersParentView.setVisibility(View.GONE);
+        ensureEditActivity();
+        if (activity != null) {
+            activity.mode = EditImageActivity.MODE_NONE;
+            activity.bottomGallery.setCurrentItem(MainMenuFragment.INDEX);
+            activity.mainImage.setVisibility(View.VISIBLE);
+            activity.bannerFlipper.showPrevious();
+        }
+        if (textStickersParentView != null) {
+            textStickersParentView.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onShow() {
-        activity.mode = EditImageActivity.MODE_TEXT;
-        activity.mainImage.setVisibility(View.GONE);
-        textStickersParentView.updateImageBitmap(activity.getMainBit());
-        activity.bannerFlipper.showNext();
-        textStickersParentView.setVisibility(View.VISIBLE);
+        if (activity != null && textStickersParentView != null) {
+            activity.mode = EditImageActivity.MODE_TEXT;
+            activity.mainImage.setVisibility(View.GONE);
+            textStickersParentView.updateImageBitmap(activity.getMainBit());
+            activity.bannerFlipper.showNext();
+            textStickersParentView.setVisibility(View.VISIBLE);
+        }
 
         autoScaleImageToFitBounds();
     }
 
     private void autoScaleImageToFitBounds() {
-        textStickersParentView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                textStickersParentView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                scaleImage();
-            }
-        });
+        if (textStickersParentView != null) {
+            textStickersParentView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    textStickersParentView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    scaleImage();
+                }
+            });
+        }
     }
 
     private void scaleImage() {
-        final float zoomLayoutWidth = zoomLayout.getWidth();
-        final float zoomLayoutHeight = zoomLayout.getHeight();
+        if (zoomLayout != null && textStickersParentView != null) {
+            final float zoomLayoutWidth = zoomLayout.getWidth();
+            final float zoomLayoutHeight = zoomLayout.getHeight();
 
-        final float imageViewWidth = textStickersParentView.getWidth();
-        final float imageViewHeight = textStickersParentView.getHeight();
+            final float imageViewWidth = textStickersParentView.getWidth();
+            final float imageViewHeight = textStickersParentView.getHeight();
 
-        // To avoid divideByZero exception
-        if (imageViewHeight != 0 && imageViewWidth != 0 && zoomLayoutHeight != 0 && zoomLayoutWidth != 0) {
-            final float offsetFactorX = zoomLayoutWidth / imageViewWidth;
-            final float offsetFactorY = zoomLayoutHeight / imageViewHeight;
+            // To avoid divideByZero exception
+            if (imageViewHeight != 0 && imageViewWidth != 0 && zoomLayoutHeight != 0 && zoomLayoutWidth != 0) {
+                final float offsetFactorX = zoomLayoutWidth / imageViewWidth;
+                final float offsetFactorY = zoomLayoutHeight / imageViewHeight;
 
-            float scaleFactor = Math.min(offsetFactorX, offsetFactorY);
-            zoomLayout.setChildScale(scaleFactor);
+                float scaleFactor = Math.min(offsetFactorX, offsetFactorY);
+                zoomLayout.setChildScale(scaleFactor);
+            }
         }
     }
 
@@ -207,13 +227,12 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         bitmap -> {
-                            if (addedViews.size() > 0) {
+                            if (addedViews != null && activity != null && !addedViews.isEmpty()) {
                                 activity.changeMainBitmap(bitmap, true);
                             }
                             backToMain();
                         },
                         e -> {
-                            e.printStackTrace();
                             backToMain();
                             Toast.makeText(getContext(), getString(R.string.iamutkarshtiwari_github_io_ananas_save_error), Toast.LENGTH_SHORT).show();
                         });
@@ -221,21 +240,28 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     }
 
     private void clearAllStickers() {
-        textStickersParentView.removeAllViews();
+        if (textStickersParentView != null) {
+            textStickersParentView.removeAllViews();
+        }
     }
 
     private Bitmap getFinalBitmapFromView(View view) {
-        Bitmap finalBitmap = view.getDrawingCache();
-        Bitmap resultBitmap = finalBitmap.copy(Bitmap.Config.ARGB_8888, true);
+        if (textStickersParentView != null) {
+            Bitmap finalBitmap = view.getDrawingCache();
+            Bitmap resultBitmap = finalBitmap.copy(Bitmap.Config.ARGB_8888, true);
 
-        int textStickerHeightCenterY = textStickersParentView.getHeight() / 2;
-        int textStickerWidthCenterX = textStickersParentView.getWidth() / 2;
+            int textStickerHeightCenterY = textStickersParentView.getHeight() / 2;
+            int textStickerWidthCenterX = textStickersParentView.getWidth() / 2;
 
-        int imageViewHeight = textStickersParentView.getBitmapHolderImageView().getHeight();
-        int imageViewWidth = textStickersParentView.getBitmapHolderImageView().getWidth();
+            int imageViewHeight = textStickersParentView.getBitmapHolderImageView().getHeight();
+            int imageViewWidth = textStickersParentView.getBitmapHolderImageView().getWidth();
 
-        // Crop actual image from textStickerView
-        return Bitmap.createBitmap(resultBitmap, textStickerWidthCenterX - (imageViewWidth / 2), textStickerHeightCenterY - (imageViewHeight / 2), imageViewWidth, imageViewHeight);
+            // Crop actual image from textStickerView
+            return Bitmap.createBitmap(resultBitmap, textStickerWidthCenterX - (imageViewWidth / 2), textStickerHeightCenterY - (imageViewHeight / 2), imageViewWidth, imageViewHeight);
+        }
+        else {
+            return null;
+        }
     }
 
     @Override
@@ -246,6 +272,10 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
 
     @SuppressLint("ClickableViewAccessibility")
     private void addText(String text, final int colorCodeTextView) {
+        if (activity == null || this.textStickersParentView == null) {
+            return;
+        }
+
         final View textStickerView = getTextStickerLayout();
         final TextView textInputTv = textStickerView.findViewById(R.id.text_sticker_tv);
         final ImageView imgClose = textStickerView.findViewById(R.id.sticker_delete_btn);
@@ -253,8 +283,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
 
         textInputTv.setText(text);
         textInputTv.setTextColor(colorCodeTextView);
-        textInputTv.setTextSize(TypedValue.COMPLEX_UNIT_SP,
-                getResources().getDimension(R.dimen.text_sticker_size));
+        textInputTv.setTextSize(TypedValue.COMPLEX_UNIT_SP,  getResources().getDimension(R.dimen.text_sticker_size));
 
         MultiTouchListener multiTouchListener = new MultiTouchListener(
                 imgClose,
@@ -267,7 +296,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
 
             @Override
             public void onClick() {
-                boolean isBackgroundVisible = frameBorder.getTag() != null && (boolean) frameBorder.getTag();
+                boolean isBackgroundVisible = frameBorder != null && frameBorder.getTag() != null && (boolean) frameBorder.getTag();
                 if (isBackgroundVisible && !isDownAlready) {
                     String textInput = textInputTv.getText().toString();
                     int currentTextColor = textInputTv.getCurrentTextColor();
@@ -277,8 +306,8 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
 
             @Override
             public void onDown() {
-                boolean isBackgroundVisible = frameBorder.getTag() != null && (boolean) frameBorder.getTag();
-                if (!isBackgroundVisible) {
+                boolean isBackgroundVisible = frameBorder != null && frameBorder.getTag() != null && (boolean) frameBorder.getTag();
+                if (frameBorder != null && !isBackgroundVisible) {
                     frameBorder.setBackgroundResource(R.drawable.background_border);
                     imgClose.setVisibility(View.VISIBLE);
                     frameBorder.setTag(true);
@@ -313,20 +342,23 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     }
 
     private void updateViewsBordersVisibilityExcept(@Nullable View keepView) {
-        for (View view : addedViews) {
-            if (view != keepView) {
-                FrameLayout border = view.findViewById(R.id.sticker_border);
-                border.setBackgroundResource(0);
-                ImageView closeBtn = view.findViewById(R.id.sticker_delete_btn);
-                closeBtn.setVisibility(View.GONE);
-                border.setTag(false);
+        if (addedViews != null) {
+            for (View view : addedViews) {
+                if (view != keepView) {
+                    FrameLayout border = view.findViewById(R.id.sticker_border);
+                    border.setBackgroundResource(0);
+                    ImageView closeBtn = view.findViewById(R.id.sticker_delete_btn);
+                    closeBtn.setVisibility(View.GONE);
+                    border.setTag(false);
+                }
             }
         }
     }
 
     private void editText(View view, String inputText, int colorCode) {
         TextView inputTextView = view.findViewById(R.id.text_sticker_tv);
-        if (inputTextView != null && addedViews.contains(view) && !TextUtils.isEmpty(inputText)) {
+        if (inputTextView != null && addedViews != null && textStickersParentView != null
+                && addedViews.contains(view) && !TextUtils.isEmpty(inputText)) {
             inputTextView.setText(inputText);
             inputTextView.setTextColor(colorCode);
             textStickersParentView.updateViewLayout(view, view.getLayoutParams());
@@ -336,18 +368,22 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     }
 
     private void addViewToParent(View view) {
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-        textStickersParentView.addView(view, params);
-        addedViews.add(view);
-        updateViewsBordersVisibilityExcept(view);
+        if (addedViews != null && textStickersParentView != null) {
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+            textStickersParentView.addView(view, params);
+            addedViews.add(view);
+            updateViewsBordersVisibilityExcept(view);
+        }
     }
 
     private void deleteViewFromParent(View view) {
-        textStickersParentView.removeView(view);
-        addedViews.remove(view);
-        textStickersParentView.invalidate();
-        updateViewsBordersVisibilityExcept(null);
+        if (addedViews != null && textStickersParentView != null) {
+            textStickersParentView.removeView(view);
+            addedViews.remove(view);
+            textStickersParentView.invalidate();
+            updateViewsBordersVisibilityExcept(null);
+        }
     }
 }
