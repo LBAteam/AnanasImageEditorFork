@@ -38,6 +38,15 @@
     <string name="iamutkarshtiwari_github_io_ananas_ratio9_16" translatable="false">9:16</string>
     <string name="iamutkarshtiwari_github_io_ananas_ratio16_9" translatable="false">16:9</string>
 
+    <string name="iamutkarshtiwari_github_io_ananas_more">More</string>
+    <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">The edited image has not been saved. Do you want to exit?</string>
+    <string name="iamutkarshtiwari_github_io_ananas_confirm">Confirm</string>
+    <string name="iamutkarshtiwari_github_io_ananas_cancel">Cancel</string>
+
+    <string name="iamutkarshtiwari_github_io_ananas_beauty">Beauty</string>
+    <string name="iamutkarshtiwari_github_io_ananas_smooth">Smoothness</string>
+    <string name="iamutkarshtiwari_github_io_ananas_white_skin">Skin Tone</string>
+
     <string-array name="iamutkarshtiwari_github_io_ananas_filters">
         <item>Origin</item>
         <item>Soft</item>
@@ -51,6 +60,15 @@
         <item>Yogurt</item>
         <item>Fleeting</item>
         <item>Shine</item>
+    </string-array>
+
+    <string-array name="iamutkarshtiwari_github_io_ananas_type_names">
+        <item>Type 1</item>
+        <item>Type 2</item>
+        <item>Type 3</item>
+        <item>Type 4</item>
+        <item>Type 5</item>
+        <item>Type 6</item>
     </string-array>
 
     <string-array translatable="false" name="iamutkarshtiwari_github_io_ananas_filter_drawable_list">
@@ -77,15 +95,6 @@
         <item>type6</item>
     </string-array>
 
-    <string-array name="iamutkarshtiwari_github_io_ananas_type_names">
-        <item>Type 1</item>
-        <item>Type 2</item>
-        <item>Type 3</item>
-        <item>Type 4</item>
-        <item>Type 5</item>
-        <item>Type 6</item>
-    </string-array>
-
     <integer-array translatable="false" name="iamutkarshtiwari_github_io_ananas_type_count">
         <item>5</item>
         <item>5</item>
@@ -94,15 +103,6 @@
         <item>3</item>
         <item>5</item>
     </integer-array>
-
-    <string name="iamutkarshtiwari_github_io_ananas_more">More</string>
-    <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">The edited image has not been saved. Do you want to exit?</string>
-    <string name="iamutkarshtiwari_github_io_ananas_confirm">Confirm</string>
-    <string name="iamutkarshtiwari_github_io_ananas_cancel">Cancel</string>
-
-    <string name="iamutkarshtiwari_github_io_ananas_beauty">Beauty</string>
-    <string name="iamutkarshtiwari_github_io_ananas_smooth">Smoothness</string>
-    <string name="iamutkarshtiwari_github_io_ananas_white_skin">Skin Tone</string>
 
     <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_PATH" />
     <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_COUNT" />
