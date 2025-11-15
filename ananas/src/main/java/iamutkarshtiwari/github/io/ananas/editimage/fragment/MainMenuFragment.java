@@ -69,47 +69,73 @@ public class MainMenuFragment extends BaseEditFragment implements
         brightnessBtn = mainView.findViewById(R.id.btn_brightness);
         saturationBtn = mainView.findViewById(R.id.btn_contrast);
 
-        if (intentBundle.getBoolean(ImageEditorIntentBuilder.STICKER_FEATURE, false)) {
+        if (intentBundle == null) {
+            intentBundle = getArguments();
+        }
+
+        boolean stickerFeature = false;
+        boolean filterFeature = false;
+        boolean cropFeature = false;
+        boolean rotateFeature = false;
+        boolean addTextFeature = false;
+        boolean paintFeature = false;
+        boolean beautyFeature = false;
+        boolean brightnessFeature = false;
+        boolean saturationFeature = false;
+
+        if (intentBundle != null) {
+            stickerFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.STICKER_FEATURE, false);
+            filterFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.FILTER_FEATURE, false);
+            cropFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.CROP_FEATURE, false);
+            rotateFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.ROTATE_FEATURE, false);
+            addTextFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.ADD_TEXT_FEATURE, false);
+            paintFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.PAINT_FEATURE, false);
+            beautyFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.BEAUTY_FEATURE, false);
+            brightnessFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.BRIGHTNESS_FEATURE, false);
+            saturationFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.SATURATION_FEATURE, false);
+        }
+
+        if (stickerFeature) {
             stickerBtn.setVisibility(View.VISIBLE);
             stickerBtn.setOnClickListener(this);
         }
 
-        if (intentBundle.getBoolean(ImageEditorIntentBuilder.FILTER_FEATURE, false)) {
+        if (filterFeature) {
             filterBtn.setVisibility(View.VISIBLE);
             filterBtn.setOnClickListener(this);
         }
 
-        if (intentBundle.getBoolean(ImageEditorIntentBuilder.CROP_FEATURE, false)) {
+        if (cropFeature) {
             cropBtn.setVisibility(View.VISIBLE);
             cropBtn.setOnClickListener(this);
         }
 
-        if (intentBundle.getBoolean(ImageEditorIntentBuilder.ROTATE_FEATURE, false)) {
+        if (rotateFeature) {
             rotateBtn.setVisibility(View.VISIBLE);
             rotateBtn.setOnClickListener(this);
         }
 
-        if (intentBundle.getBoolean(ImageEditorIntentBuilder.ADD_TEXT_FEATURE, false)) {
+        if (addTextFeature) {
             textBtn.setVisibility(View.VISIBLE);
             textBtn.setOnClickListener(this);
         }
 
-        if (intentBundle.getBoolean(ImageEditorIntentBuilder.PAINT_FEATURE, false)) {
+        if (paintFeature) {
             paintBtn.setVisibility(View.VISIBLE);
             paintBtn.setOnClickListener(this);
         }
 
-        if (intentBundle.getBoolean(ImageEditorIntentBuilder.BEAUTY_FEATURE, false)) {
+        if (beautyFeature) {
             beautyBtn.setVisibility(View.VISIBLE);
             beautyBtn.setOnClickListener(this);
         }
 
-        if (intentBundle.getBoolean(ImageEditorIntentBuilder.BRIGHTNESS_FEATURE, false)) {
+        if (brightnessFeature) {
             brightnessBtn.setVisibility(View.VISIBLE);
             brightnessBtn.setOnClickListener(this);
         }
 
-        if (intentBundle.getBoolean(ImageEditorIntentBuilder.SATURATION_FEATURE, false)) {
+        if (saturationFeature) {
             saturationBtn.setVisibility(View.VISIBLE);
             saturationBtn.setOnClickListener(this);
         }
