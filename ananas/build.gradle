@@ -6,6 +6,8 @@ apply plugin: 'kotlin-kapt'
 group='com.github.iamutkarshtiwari'
 
 android {
+    namespace "com.utiful.ananas"
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
