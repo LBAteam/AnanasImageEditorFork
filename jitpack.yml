@@ -1,2 +1,9 @@
-before_install:
-  - sdkmanager "ndk;28.0.13004108"
+jdk:
+  - openjdk17
+
+install:
+  - echo "=== JITPACK.YML IS RUNNING ==="
+  - sdkmanager --install "ndk;28.0.13004108"
+  - echo "=== NDK INSTALLED ==="
+  - ./gradlew --version
+  - ./gradlew clean :ananas:assembleRelease -x test
