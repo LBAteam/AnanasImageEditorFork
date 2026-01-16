@@ -2,4 +2,4 @@ jdk:
   - openjdk17
 
 install:
-  - ./gradlew clean :ananas:assembleRelease -x test
+  - ./gradlew clean :ananas:publishToMavenLocal -x test
