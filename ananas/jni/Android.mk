@@ -6,5 +6,6 @@ LOCAL_MODULE    := photoprocessing
 
 LOCAL_SRC_FILES := nanojpeg.c mem_utils.c bitmap.c bicubic_resize.c filter.c transform.c colour_space.c matrix.c blur.c photo_processing.c
 LOCAL_LDLIBS    := -lm -llog -ljnigraphics -landroid $(extra_ldlibs)
+LOCAL_LDFLAGS += -Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384
 
 include $(BUILD_SHARED_LIBRARY)

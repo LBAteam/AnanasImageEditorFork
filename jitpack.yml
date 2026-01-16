@@ -1,0 +1,2 @@
+before_install:
+  - sdkmanager "ndk;28.0.13004108"
