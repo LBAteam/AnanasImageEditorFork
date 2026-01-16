@@ -6,6 +6,8 @@
 #include <mem_utils.h>
 #include <stdlib.h>
 #include <android/log.h>
+#include <string.h>
+#include "blur.h"
 
 #define  LOG_TAG    "blur.c"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)

@@ -20,6 +20,8 @@
 #include <mem_utils.h>
 #include <android/log.h>
 #include "beauty.h"
+#include "filter.h"
+#include "bicubic_resize.h"
 
 #define  LOG_TAG    "IMAGE_EDIT_PROCESSING"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
@@ -120,31 +122,34 @@ void Java_iamutkarshtiwari_github_io_ananas_editimage_fliter_PhotoProcessing_nat
 	applyHDR(&bitmap);
 }
 
-int Java_iamutkarshtiwari_github_io_ananas_editimage_fliter_PhotoProcessing_nativeLoadResizedJpegBitmap(JNIEnv* env, jobject thiz, jbyteArray bytes, jint jpegSize, jint maxPixels) {
+void Java_iamutkarshtiwari_github_io_ananas_editimage_fliter_PhotoProcessing_nativeLoadResizedJpegBitmap(JNIEnv* env, jobject thiz, jbyteArray bytes, jint jpegSize, jint maxPixels) {
 	char* jpegData = (char*) (*env)->GetPrimitiveArrayCritical(env, bytes, NULL);
 
 	if (jpegData == NULL) {
 		LOGE("jpeg data was null");
-		return JNI_GET_INT_ARRAY_ERROR;
+        return;
+		//return JNI_GET_INT_ARRAY_ERROR;
 	}
 
 	int resultCode = decodeJpegData(jpegData, jpegSize, maxPixels, &bitmap);
 	if (resultCode != MEMORY_OK) {
 		deleteBitmap(&bitmap);
 		LOGE("error decoding jpeg resultCode=%d", resultCode);
-		return resultCode;
+        return;
+        //return resultCode;
 	}
 
 	(*env)->ReleasePrimitiveArrayCritical(env, bytes, jpegData, 0);
 
-	return MEMORY_OK;
+    //return MEMORY_OK;
 }
 
-int Java_iamutkarshtiwari_github_io_ananas_editimage_fliter_PhotoProcessing_nativeResizeBitmap(JNIEnv* env, jobject thiz, jint newWidth, jint newHeight) {
+void Java_iamutkarshtiwari_github_io_ananas_editimage_fliter_PhotoProcessing_nativeResizeBitmap(JNIEnv* env, jobject thiz, jint newWidth, jint newHeight) {
 	unsigned char* newRed;
 	int resultCode = newUnsignedCharArray(newWidth*newHeight, &newRed);
 	if (resultCode != MEMORY_OK) {
-		return resultCode;
+        return;
+        //return resultCode;
 	}
 	resizeChannelBicubic(bitmap.red, bitmap.width, bitmap.height, newRed, (int)newWidth, (int)newHeight);
 	freeUnsignedCharArray(&bitmap.red);
@@ -155,7 +160,8 @@ int Java_iamutkarshtiwari_github_io_ananas_editimage_fliter_PhotoProcessing_nati
 	unsigned char* newGreen;
 	resultCode = newUnsignedCharArray(newWidth*newHeight, &newGreen);
 	if (resultCode != MEMORY_OK) {
-		return resultCode;
+        return;
+        //return resultCode;
 	}
 	resizeChannelBicubic(bitmap.green, bitmap.width, bitmap.height, newGreen, (int)newWidth, (int)newHeight);
 	freeUnsignedCharArray(&bitmap.green);
@@ -166,7 +172,8 @@ int Java_iamutkarshtiwari_github_io_ananas_editimage_fliter_PhotoProcessing_nati
 	unsigned char* newBlue;
 	resultCode = newUnsignedCharArray(newWidth*newHeight, &newBlue);
 	if (resultCode != MEMORY_OK) {
-		return resultCode;
+        return;
+        //return resultCode;
 	}
 	resizeChannelBicubic(bitmap.blue, bitmap.width, bitmap.height, newBlue, (int)newWidth, (int)newHeight);
 	freeUnsignedCharArray(&bitmap.blue);

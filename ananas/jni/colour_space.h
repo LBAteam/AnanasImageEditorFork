@@ -16,10 +16,15 @@
 
 #ifndef COLOUR_SPACE
 #define COLOUR_SPACE
-#endif
 
-typedef struct {
+typedef struct HSBColour {
     float h;        /* Hue degree between 0.0 and 360.0 */
     float s;        /* Saturation between 0.0 (gray) and 1.0 */
     float b;        /* Value between 0.0 (black) and 1.0 */
 } HSBColour ;
+
+void getBrightness(unsigned char red, unsigned char green, unsigned char blue, float* brightness);
+void rgbToHsb(unsigned char red, unsigned char green, unsigned char blue, HSBColour* hsb);
+void hsbToRgb(HSBColour* hsb, unsigned char* red, unsigned char* green, unsigned char* blue);
+
+#endif

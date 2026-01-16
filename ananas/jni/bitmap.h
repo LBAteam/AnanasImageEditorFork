@@ -16,13 +16,12 @@
 
 #ifndef BITMAP
 #define BITMAP
-#endif
-
-#include <transform.h>
 
 static const int INCONSISTENT_BITMAP_ERROR = 5;
 
-typedef struct {
+#include "transform.h"   // needs full type because TransformList is by-value
+
+typedef struct Bitmap {
 	unsigned int width;
 	unsigned int height;
 
@@ -40,9 +39,18 @@ typedef struct {
 	TransformList transformList;
 } Bitmap;
 
+int initBitmapMemory(Bitmap* bitmap, int width, int height);
+void getBitmapRowAsIntegers(Bitmap* bitmap, int y, int* pixels);
+void setBitmapRowFromIntegers(Bitmap* bitmap, int y, int* pixels);
+void deleteBitmap(Bitmap* bitmap);
+int decodeJpegData(char* jpegData, int jpegSize, int maxPixels, Bitmap* bitmap);
+
 /**
  * @file bitmap.h
  */
+
+
+#endif
 
 #ifndef ANDROID_BITMAP_H
 #define ANDROID_BITMAP_H

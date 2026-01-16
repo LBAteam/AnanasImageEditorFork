@@ -7,6 +7,8 @@ group='com.github.iamutkarshtiwari'
 android {
     namespace "iamutkarshtiwari.github.io.ananas"
 
+    ndkVersion "28.0.13004108"
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
@@ -30,6 +32,12 @@ android {
     }
     buildFeatures {
         viewBinding = true
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path file('jni/Android.mk')
+        }
     }
 }
 

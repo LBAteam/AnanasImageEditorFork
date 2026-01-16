@@ -24,6 +24,9 @@
 
 #include <mem_utils.h>
 #include <bitmap.h>
+#include "nanojpeg.h"
+#include "transform.h"
+#include "bicubic_resize.h"
 
 #define  LOG_TAG    "bitmap.c"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
@@ -101,6 +104,9 @@ int initBitmapMemory(Bitmap* bitmap, int width, int height) {
 		return resultCode;
 	}
 }
+
+int decodeJpegChannel(char* jpegData, int jpegSize, int channel, unsigned char** channelPixels, int* srcWidth, int* srcHeight);
+int resizeChannel(unsigned char** channelPixels, int srcWidth, int srcHeight, int maxWidth, int maxHeight);
 
 int decodeJpegData(char* jpegData, int jpegSize, int maxPixels, Bitmap* bitmap) {
 	int returnCode;

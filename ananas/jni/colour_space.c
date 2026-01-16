@@ -82,7 +82,7 @@ void getBrightness(unsigned char red, unsigned char green, unsigned char blue, f
 	(*brightness) = max/255;
 }
 
-inline unsigned char convert(float val) {
+unsigned char convert(float val) {
 	return floorf((255 * val) + 0.5f);
 }
 

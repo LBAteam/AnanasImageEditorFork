@@ -15,6 +15,7 @@
  */
 
 #include <stdlib.h>
+#include <string.h>
 #include <mem_utils.h>
 
 int newIntArray(unsigned int size, int** arrayPointer) {

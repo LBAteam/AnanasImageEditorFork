@@ -3,6 +3,7 @@
 
 #include <math.h>
 #include "bitmap.h"
+#include "matrix.h"
 
 #define RLUM    (0.3086f)
 #define GLUM    (0.6094f)
@@ -59,7 +60,7 @@ void applyMatrixToPixel(unsigned char* red, unsigned char* green, unsigned char*
 	(*blue) = b2;
 }
 
-identMatrix(float *matrix) {
+void identMatrix(float *matrix) {
     *matrix++ = 1.0f;    /* row 1        */
     *matrix++ = 0.0f;
     *matrix++ = 0.0f;
@@ -76,6 +77,27 @@ identMatrix(float *matrix) {
     *matrix++ = 0.0f;
     *matrix++ = 0.0f;
     *matrix++ = 1.0f;
+}
+
+
+void multiplyMatricies(float a[4][4], float b[4][4], float c[4][4]) {
+    int x, y;
+    float temp[4][4];
+
+    for(y=0; y<4 ; y++) {
+        for(x=0 ; x<4 ; x++) {
+            temp[y][x] = b[y][0] * a[0][x]
+                         + b[y][1] * a[1][x]
+                         + b[y][2] * a[2][x]
+                         + b[y][3] * a[3][x];
+        }
+    }
+
+    for(y=0; y<4; y++) {
+        for(x=0; x<4; x++) {
+            c[y][x] = temp[y][x];
+        }
+    }
 }
 
 void saturateMatrix(float matrix[4][4], float* saturation)
@@ -118,24 +140,4 @@ void saturateMatrix(float matrix[4][4], float* saturation)
     mmatrix[3][2] = 0.0f;
     mmatrix[3][3] = 1.0f;
     multiplyMatricies(mmatrix, matrix, matrix);
-}
-
-multiplyMatricies(float a[4][4], float b[4][4], float c[4][4]) {
-    int x, y;
-    float temp[4][4];
-
-    for(y=0; y<4 ; y++) {
-        for(x=0 ; x<4 ; x++) {
-            temp[y][x] = b[y][0] * a[0][x]
-                       + b[y][1] * a[1][x]
-                       + b[y][2] * a[2][x]
-                       + b[y][3] * a[3][x];
-        }
-    }
-
-    for(y=0; y<4; y++) {
-        for(x=0; x<4; x++) {
-            c[y][x] = temp[y][x];
-        }
-    }
 }
