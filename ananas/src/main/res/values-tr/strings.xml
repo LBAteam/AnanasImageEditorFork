@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="iamutkarshtiwari_github_io_ananas_library_name">Photo Editor</string>
+    <string name="iamutkarshtiwari_github_io_ananas_no_images">Resim bulunamadı</string>
+    <string name="iamutkarshtiwari_github_io_ananas_images">%d resim</string>
+    <string name="iamutkarshtiwari_github_io_ananas_done">TAMAMLANDI</string>
+    <string name="iamutkarshtiwari_github_io_ananas_apply">UYGULA</string>
+    <string name="iamutkarshtiwari_github_io_ananas_stickers">Etiketler</string>
+    <string name="iamutkarshtiwari_github_io_ananas_filter">Filtreler</string>
+    <string name="iamutkarshtiwari_github_io_ananas_crop">Kırp</string>
+    <string name="iamutkarshtiwari_github_io_ananas_rotate">Döndür</string>
+    <string name="iamutkarshtiwari_github_io_ananas_text">Metin</string>
+    <string name="iamutkarshtiwari_github_io_ananas_brush">Fırça</string>
+    <string name="iamutkarshtiwari_github_io_ananas_eraser">Silgi</string>
+    <string name="iamutkarshtiwari_github_io_ananas_edit">Düzenle</string>
+    <string name="iamutkarshtiwari_github_io_ananas_brightness">Parlaklık</string>
+    <string name="iamutkarshtiwari_github_io_ananas_saturation">Doygunluk</string>
+    <string name="iamutkarshtiwari_github_io_ananas_size">Boyut</string>
+    <string name="iamutkarshtiwari_github_io_ananas_opacity">Opaklık</string>
+    <string name="materialcolorpicker__errHex">Hex Kod Biçimi yanlış</string>
+    <string name="materialcolorpicker__btnSelectColor">Seç</string>
+    <string name="iamutkarshtiwari_github_io_ananas_saving_image">Kaydediliyor…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_input_hint">Metin girin…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_not_selected">Lütfen düzenlemek için bir resim seçin</string>
+    <string name="iamutkarshtiwari_github_io_ananas_save_error">Kaydedilirken hata oluştu!</string>
+    <string name="iamutkarshtiwari_github_io_ananas_load_error">Resim yüklenemedi!</string>
+    <string name="iamutkarshtiwari_github_io_ananas_loading">Yükleniyor…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_pick_a_color">Renk seçin</string>
+    <string name="iamutkarshtiwari_github_io_ananas_free_size">ÜCRETSİZ</string>
+    <string name="iamutkarshtiwari_github_io_ananas_fit_image">ORİJİNAL</string>
+    <string name="iamutkarshtiwari_github_io_ananas_square">KARE</string>
+    <string name="iamutkarshtiwari_github_io_ananas_more">Daha fazla</string>
+    <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">Düzenlenen resim kaydedilmedi. Çıkmak ister misiniz?</string>
+    <string name="iamutkarshtiwari_github_io_ananas_confirm">Onayla</string>
+    <string name="iamutkarshtiwari_github_io_ananas_cancel">İptal</string>
+    <string name="iamutkarshtiwari_github_io_ananas_beauty">Güzellik</string>
+    <string name="iamutkarshtiwari_github_io_ananas_smooth">Pürüzsüzlük</string>
+    <string name="iamutkarshtiwari_github_io_ananas_white_skin">Cilt Tonu</string>
+</resources>

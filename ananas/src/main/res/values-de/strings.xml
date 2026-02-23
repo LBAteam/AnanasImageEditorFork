@@ -20,7 +20,7 @@
     <string name="materialcolorpicker__errHex">Hex-Code-Format falsch</string>
     <string name="materialcolorpicker__btnSelectColor">Auswählen</string>
     <string name="iamutkarshtiwari_github_io_ananas_saving_image">Speichern…</string>
-    <string name="iamutkarshtiwari_github_io_ananas_input_hint">Text eingeben...</string>
+    <string name="iamutkarshtiwari_github_io_ananas_input_hint">Text eingeben…</string>
     <string name="iamutkarshtiwari_github_io_ananas_not_selected">Bitte wählen Sie ein Bild zum Bearbeiten aus</string>
     <string name="iamutkarshtiwari_github_io_ananas_save_error">Fehler beim Speichern!</string>
     <string name="iamutkarshtiwari_github_io_ananas_load_error">Das Bild konnte nicht geladen werden!</string>

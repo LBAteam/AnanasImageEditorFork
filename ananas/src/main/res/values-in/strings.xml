@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="iamutkarshtiwari_github_io_ananas_library_name">Photo Editor</string>
+    <string name="iamutkarshtiwari_github_io_ananas_no_images">Gambar tidak ditemukan</string>
+    <string name="iamutkarshtiwari_github_io_ananas_images">%d gambar</string>
+    <string name="iamutkarshtiwari_github_io_ananas_done">SELESAI</string>
+    <string name="iamutkarshtiwari_github_io_ananas_apply">TERAPKAN</string>
+    <string name="iamutkarshtiwari_github_io_ananas_stickers">Stiker</string>
+    <string name="iamutkarshtiwari_github_io_ananas_filter">Filter</string>
+    <string name="iamutkarshtiwari_github_io_ananas_crop">Pangkas</string>
+    <string name="iamutkarshtiwari_github_io_ananas_rotate">Putar</string>
+    <string name="iamutkarshtiwari_github_io_ananas_text">Teks</string>
+    <string name="iamutkarshtiwari_github_io_ananas_brush">Kuas Cat</string>
+    <string name="iamutkarshtiwari_github_io_ananas_eraser">Penghapus</string>
+    <string name="iamutkarshtiwari_github_io_ananas_edit">Edit</string>
+    <string name="iamutkarshtiwari_github_io_ananas_brightness">Kecerahan</string>
+    <string name="iamutkarshtiwari_github_io_ananas_saturation">Kejenuhan</string>
+    <string name="iamutkarshtiwari_github_io_ananas_size">Ukuran</string>
+    <string name="iamutkarshtiwari_github_io_ananas_opacity">Opasitas</string>
+    <string name="materialcolorpicker__errHex">Format Kode Hex salah</string>
+    <string name="materialcolorpicker__btnSelectColor">Pilih</string>
+    <string name="iamutkarshtiwari_github_io_ananas_saving_image">Menyimpan…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_input_hint">Masukkan teks…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_not_selected">Silakan pilih gambar untuk diedit</string>
+    <string name="iamutkarshtiwari_github_io_ananas_save_error">Kesalahan saat menyimpan!</string>
+    <string name="iamutkarshtiwari_github_io_ananas_load_error">Gagal memuat gambar!</string>
+    <string name="iamutkarshtiwari_github_io_ananas_loading">Memuat…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_pick_a_color">Pilih warna</string>
+    <string name="iamutkarshtiwari_github_io_ananas_free_size">GRATIS</string>
+    <string name="iamutkarshtiwari_github_io_ananas_fit_image">ASLI</string>
+    <string name="iamutkarshtiwari_github_io_ananas_square">PERSEGI</string>
+    <string name="iamutkarshtiwari_github_io_ananas_more">Lainnya</string>
+    <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">Gambar yang diedit belum disimpan. Apakah Anda ingin keluar?</string>
+    <string name="iamutkarshtiwari_github_io_ananas_confirm">Konfirmasi</string>
+    <string name="iamutkarshtiwari_github_io_ananas_cancel">Batal</string>
+    <string name="iamutkarshtiwari_github_io_ananas_beauty">Kecantikan</string>
+    <string name="iamutkarshtiwari_github_io_ananas_smooth">Kehalusan</string>
+    <string name="iamutkarshtiwari_github_io_ananas_white_skin">Warna Kulit</string>
+</resources>

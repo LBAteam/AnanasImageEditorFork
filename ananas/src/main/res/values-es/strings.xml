@@ -21,13 +21,13 @@
 
     <string name="materialcolorpicker__errHex">Formato de Codigo Hex incorrecto</string>
     <string name="materialcolorpicker__btnSelectColor">Seleccionar</string>
-    <string name="iamutkarshtiwari_github_io_ananas_saving_image">Guardando...</string>
-    <string name="iamutkarshtiwari_github_io_ananas_input_hint">Campo de Texto ...</string>
+    <string name="iamutkarshtiwari_github_io_ananas_saving_image">Guardando…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_input_hint">Campo de Texto …</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_not_selected">Porfavor elija una imagen para editar</string>
     <string name="iamutkarshtiwari_github_io_ananas_save_error">Error en guardado!</string>
     <string name="iamutkarshtiwari_github_io_ananas_load_error">Fallo la carga de imagen!</string>
-    <string name="iamutkarshtiwari_github_io_ananas_loading">Cargando...</string>
+    <string name="iamutkarshtiwari_github_io_ananas_loading">Cargando…</string>
     <string name="iamutkarshtiwari_github_io_ananas_pick_a_color">Seleccione un color</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_free_size">LIBRE</string>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="iamutkarshtiwari_github_io_ananas_library_name">Photo Editor</string>
+    <string name="iamutkarshtiwari_github_io_ananas_no_images">Brak obrazu</string>
+    <string name="iamutkarshtiwari_github_io_ananas_images">%d obrazów</string>
+    <string name="iamutkarshtiwari_github_io_ananas_done">GOTOWE</string>
+    <string name="iamutkarshtiwari_github_io_ananas_apply">ZASTOSUJ</string>
+    <string name="iamutkarshtiwari_github_io_ananas_stickers">Naklejki</string>
+    <string name="iamutkarshtiwari_github_io_ananas_filter">Filtry</string>
+    <string name="iamutkarshtiwari_github_io_ananas_crop">Przytnij</string>
+    <string name="iamutkarshtiwari_github_io_ananas_rotate">Obróć</string>
+    <string name="iamutkarshtiwari_github_io_ananas_text">Tekst</string>
+    <string name="iamutkarshtiwari_github_io_ananas_brush">Pędzel</string>
+    <string name="iamutkarshtiwari_github_io_ananas_eraser">Gumka</string>
+    <string name="iamutkarshtiwari_github_io_ananas_edit">Edytuj</string>
+    <string name="iamutkarshtiwari_github_io_ananas_brightness">Jasność</string>
+    <string name="iamutkarshtiwari_github_io_ananas_saturation">Nasycenie</string>
+    <string name="iamutkarshtiwari_github_io_ananas_size">Rozmiar</string>
+    <string name="iamutkarshtiwari_github_io_ananas_opacity">Krycie</string>
+    <string name="materialcolorpicker__errHex">Nieprawidłowy format kodu szesnastkowego</string>
+    <string name="materialcolorpicker__btnSelectColor">Wybierz</string>
+    <string name="iamutkarshtiwari_github_io_ananas_saving_image">Zapisywanie…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_input_hint">Wprowadź tekst…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_not_selected">Wybierz obraz do edycji</string>
+    <string name="iamutkarshtiwari_github_io_ananas_save_error">Błąd podczas zapisywania!</string>
+    <string name="iamutkarshtiwari_github_io_ananas_load_error">Nie udało się załadować obrazu!</string>
+    <string name="iamutkarshtiwari_github_io_ananas_loading">Ładowanie…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_pick_a_color">Wybierz kolor</string>
+    <string name="iamutkarshtiwari_github_io_ananas_free_size">GRATIS</string>
+    <string name="iamutkarshtiwari_github_io_ananas_fit_image">ORYGINAŁ</string>
+    <string name="iamutkarshtiwari_github_io_ananas_square">KWADRAT</string>
+    <string name="iamutkarshtiwari_github_io_ananas_more">Więcej</string>
+    <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">Edytowany obraz nie został zapisany. Czy chcesz wyjść?</string>
+    <string name="iamutkarshtiwari_github_io_ananas_confirm">Potwierdź</string>
+    <string name="iamutkarshtiwari_github_io_ananas_cancel">Anuluj</string>
+    <string name="iamutkarshtiwari_github_io_ananas_beauty">Upiększanie</string>
+    <string name="iamutkarshtiwari_github_io_ananas_smooth">Gładkość</string>
+    <string name="iamutkarshtiwari_github_io_ananas_white_skin">Odcień skóry</string>
+</resources>

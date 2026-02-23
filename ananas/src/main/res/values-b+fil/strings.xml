@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="iamutkarshtiwari_github_io_ananas_library_name">Photo Editor</string>
+    <string name="iamutkarshtiwari_github_io_ananas_no_images">Walang nakitang larawan</string>
+    <string name="iamutkarshtiwari_github_io_ananas_images">%d na larawan</string>
+    <string name="iamutkarshtiwari_github_io_ananas_done">TAPOS NA</string>
+    <string name="iamutkarshtiwari_github_io_ananas_apply">ILAPAT</string>
+    <string name="iamutkarshtiwari_github_io_ananas_stickers">Mga Sticker</string>
+    <string name="iamutkarshtiwari_github_io_ananas_filter">Mga Filter</string>
+    <string name="iamutkarshtiwari_github_io_ananas_crop">I-crop</string>
+    <string name="iamutkarshtiwari_github_io_ananas_rotate">I-rotate</string>
+    <string name="iamutkarshtiwari_github_io_ananas_text">Teksto</string>
+    <string name="iamutkarshtiwari_github_io_ananas_brush">Paintbrush</string>
+    <string name="iamutkarshtiwari_github_io_ananas_eraser">Pambura</string>
+    <string name="iamutkarshtiwari_github_io_ananas_edit">I-edit</string>
+    <string name="iamutkarshtiwari_github_io_ananas_brightness">Liwanag</string>
+    <string name="iamutkarshtiwari_github_io_ananas_saturation">Saturation</string>
+    <string name="iamutkarshtiwari_github_io_ananas_size">Laki</string>
+    <string name="iamutkarshtiwari_github_io_ananas_opacity">Opacity</string>
+    <string name="materialcolorpicker__errHex">Maling format ng Hex Code</string>
+    <string name="materialcolorpicker__btnSelectColor">Piliin</string>
+    <string name="iamutkarshtiwari_github_io_ananas_saving_image">Sine-save…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_input_hint">Maglagay ng teksto…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_not_selected">Pumili ng larawang ie-edit</string>
+    <string name="iamutkarshtiwari_github_io_ananas_save_error">Error habang nagse-save!</string>
+    <string name="iamutkarshtiwari_github_io_ananas_load_error">Nabigong i-load ang larawan!</string>
+    <string name="iamutkarshtiwari_github_io_ananas_loading">Naglo-load…</string>
+    <string name="iamutkarshtiwari_github_io_ananas_pick_a_color">Pumili ng kulay</string>
+    <string name="iamutkarshtiwari_github_io_ananas_free_size">LIBRE</string>
+    <string name="iamutkarshtiwari_github_io_ananas_fit_image">ORIHINAL</string>
+    <string name="iamutkarshtiwari_github_io_ananas_square">PARAKWARD</string>
+    <string name="iamutkarshtiwari_github_io_ananas_more">Higit Pa</string>
+    <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">Hindi pa na-save ang na-edit na larawan. Gusto mo bang lumabas?</string>
+    <string name="iamutkarshtiwari_github_io_ananas_confirm">Kumpirmahin</string>
+    <string name="iamutkarshtiwari_github_io_ananas_cancel">Kanselahin</string>
+    <string name="iamutkarshtiwari_github_io_ananas_beauty">Kagandahan</string>
+    <string name="iamutkarshtiwari_github_io_ananas_smooth">Kinis</string>
+    <string name="iamutkarshtiwari_github_io_ananas_white_skin">Tono ng Balat</string>
+</resources>
