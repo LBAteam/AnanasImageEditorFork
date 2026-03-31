@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,6 +103,13 @@ public class TextEditorDialogFragment extends DialogFragment {
         addTextEditText.setText(getArguments().getString(EXTRA_INPUT_TEXT));
         colorCode = getArguments().getInt(EXTRA_COLOR_CODE);
         addTextEditText.setTextColor(colorCode);
+        updateHintVisibility();
+        addTextEditText.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN && TextUtils.isEmpty(addTextEditText.getText())) {
+                addTextEditText.setHint(null);
+            }
+            return false;
+        });
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
         //Make a callback on activity when user is done with text editing
@@ -119,5 +127,13 @@ public class TextEditorDialogFragment extends DialogFragment {
     //Callback to listener if user is done with text editing
     public void setOnTextEditorListener(OnTextEditorListener onTextEditorListener) {
         this.onTextEditorListener = onTextEditorListener;
+    }
+
+    private void updateHintVisibility() {
+        if (TextUtils.isEmpty(addTextEditText.getText())) {
+            addTextEditText.setHint(R.string.iamutkarshtiwari_github_io_ananas_input_hint);
+        } else {
+            addTextEditText.setHint(null);
+        }
     }
 }
