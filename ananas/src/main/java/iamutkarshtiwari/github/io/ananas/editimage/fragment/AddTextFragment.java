@@ -96,8 +96,10 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
 
     private void showTextEditDialog(final View rootView, String text, int colorCode) {
         if (activity != null && rootView != null) {
-            TextEditorDialogFragment textEditorDialogFragment = TextEditorDialogFragment.show(activity, text, colorCode);
-            textEditorDialogFragment.setOnTextEditorListener((inputText, colorCode1) -> editText(rootView, inputText, colorCode1));
+            TextView textInputView = rootView.findViewById(R.id.text_sticker_tv);
+            float textSize = textInputView != null ? pxToSp(textInputView.getTextSize()) : getDefaultTextSize();
+            TextEditorDialogFragment textEditorDialogFragment = TextEditorDialogFragment.show(activity, text, colorCode, textSize);
+            textEditorDialogFragment.setOnTextEditorListener((inputText, colorCode1, textSize1) -> editText(rootView, inputText, colorCode1, textSize1));
         }
     }
 
@@ -271,7 +273,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void addText(String text, final int colorCodeTextView) {
+    private void addText(String text, final int colorCodeTextView, final float textSize) {
         if (activity == null || this.textStickersParentView == null) {
             return;
         }
@@ -283,7 +285,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
 
         textInputTv.setText(text);
         textInputTv.setTextColor(colorCodeTextView);
-        textInputTv.setTextSize(TypedValue.COMPLEX_UNIT_SP,  getResources().getDimension(R.dimen.text_sticker_size));
+        textInputTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
 
         MultiTouchListener multiTouchListener = new MultiTouchListener(
                 imgClose,
@@ -355,16 +357,25 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
         }
     }
 
-    private void editText(View view, String inputText, int colorCode) {
+    private void editText(View view, String inputText, int colorCode, float textSize) {
         TextView inputTextView = view.findViewById(R.id.text_sticker_tv);
         if (inputTextView != null && addedViews != null && textStickersParentView != null
                 && addedViews.contains(view) && !TextUtils.isEmpty(inputText)) {
             inputTextView.setText(inputText);
             inputTextView.setTextColor(colorCode);
+            inputTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
             textStickersParentView.updateViewLayout(view, view.getLayoutParams());
             int i = addedViews.indexOf(view);
             if (i > -1) addedViews.set(i, view);
         }
+    }
+
+    private float getDefaultTextSize() {
+        return getResources().getDimension(R.dimen.text_sticker_size) / getResources().getDisplayMetrics().scaledDensity;
+    }
+
+    private float pxToSp(float pixelValue) {
+        return pixelValue / getResources().getDisplayMetrics().scaledDensity;
     }
 
     private void addViewToParent(View view) {

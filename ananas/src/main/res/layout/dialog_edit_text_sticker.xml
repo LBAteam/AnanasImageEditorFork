@@ -21,27 +21,43 @@
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_16sp" />
 
+    <LinearLayout
+        android:id="@+id/add_text_bottom_controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <SeekBar
+            android:id="@+id/add_text_font_size_seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_medium"
+            android:layout_marginRight="@dimen/spacing_medium"
+            android:max="12"
+            android:progress="6" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/add_text_color_picker_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:background="@android:color/black"
+            tools:listitem="@layout/color_picker_item_list" />
+    </LinearLayout>
+
     <EditText
         android:id="@+id/add_text_edit_text"
         style="@style/edit_text_style"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/add_text_color_picker_recycler_view"
+        android:layout_above="@id/add_text_bottom_controls"
         android:layout_below="@+id/add_text_done_tv"
         android:gravity="center"
         android:hint="@string/iamutkarshtiwari_github_io_ananas_input_hint"
         android:inputType="textMultiLine"
         android:textColorHint="@color/text_color"
         android:textSize="@dimen/text_size_40sp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/add_text_color_picker_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:background="@android:color/black"
-        tools:listitem="@layout/color_picker_item_list" />
 
 </RelativeLayout>

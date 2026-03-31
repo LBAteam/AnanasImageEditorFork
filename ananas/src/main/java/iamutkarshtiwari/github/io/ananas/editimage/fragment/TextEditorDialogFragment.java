@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
@@ -33,19 +35,24 @@ public class TextEditorDialogFragment extends DialogFragment {
     public static final String TAG = TextEditorDialogFragment.class.getSimpleName();
     private static final String EXTRA_INPUT_TEXT = "extra_input_text";
     private static final String EXTRA_COLOR_CODE = "extra_color_code";
+    private static final String EXTRA_TEXT_SIZE = "extra_text_size";
+    private static final int FONT_SIZE_STEP_OFFSET_SP = 6;
 
     private EditText addTextEditText;
     private InputMethodManager inputMethodManager;
     private int colorCode;
+    private float textSize;
     private OnTextEditorListener onTextEditorListener;
 
     //Show dialog with provide text and text color
     public static TextEditorDialogFragment show(@NonNull AppCompatActivity appCompatActivity,
                                                 @NonNull String inputText,
-                                                @ColorInt int initialColorCode) {
+                                                @ColorInt int initialColorCode,
+                                                float textSize) {
         Bundle args = new Bundle();
         args.putString(EXTRA_INPUT_TEXT, inputText);
         args.putInt(EXTRA_COLOR_CODE, initialColorCode);
+        args.putFloat(EXTRA_TEXT_SIZE, textSize);
         TextEditorDialogFragment fragment = new TextEditorDialogFragment();
         fragment.setArguments(args);
         fragment.show(appCompatActivity.getSupportFragmentManager(), TAG);
@@ -54,7 +61,7 @@ public class TextEditorDialogFragment extends DialogFragment {
 
     //Show dialog with default text input as empty and text color white
     public static TextEditorDialogFragment show(@NonNull AppCompatActivity appCompatActivity) {
-        return show(appCompatActivity, "", ContextCompat.getColor(appCompatActivity, R.color.white));
+        return show(appCompatActivity, "", ContextCompat.getColor(appCompatActivity, R.color.white), getDefaultTextSize(appCompatActivity));
     }
 
     @Override
@@ -85,6 +92,7 @@ public class TextEditorDialogFragment extends DialogFragment {
         addTextEditText = view.findViewById(R.id.add_text_edit_text);
         inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         TextView addTextDoneTv = view.findViewById(R.id.add_text_done_tv);
+        SeekBar addTextFontSizeSeekBar = view.findViewById(R.id.add_text_font_size_seek_bar);
 
         //Setup the color picker for text color
         RecyclerView addTextColorPickerRecyclerView = view.findViewById(R.id.add_text_color_picker_recycler_view);
@@ -102,13 +110,37 @@ public class TextEditorDialogFragment extends DialogFragment {
         addTextColorPickerRecyclerView.setAdapter(colorPickerAdapter);
         addTextEditText.setText(getArguments().getString(EXTRA_INPUT_TEXT));
         colorCode = getArguments().getInt(EXTRA_COLOR_CODE);
+        final float defaultTextSize = getDefaultTextSize(requireContext());
+        textSize = getArguments().getFloat(EXTRA_TEXT_SIZE, defaultTextSize);
         addTextEditText.setTextColor(colorCode);
+        addTextEditText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
         updateHintVisibility();
         addTextEditText.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN && TextUtils.isEmpty(addTextEditText.getText())) {
                 addTextEditText.setHint(null);
             }
             return false;
+        });
+        final int minTextSize = Math.max(1, Math.round(defaultTextSize) - FONT_SIZE_STEP_OFFSET_SP);
+        final int maxTextSize = Math.round(defaultTextSize) + FONT_SIZE_STEP_OFFSET_SP;
+        textSize = Math.max(minTextSize, Math.min(maxTextSize, textSize));
+        addTextEditText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+        addTextFontSizeSeekBar.setMax(maxTextSize - minTextSize);
+        addTextFontSizeSeekBar.setProgress(Math.round(textSize) - minTextSize);
+        addTextFontSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                textSize = minTextSize + progress;
+                addTextEditText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
         });
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
@@ -118,7 +150,7 @@ public class TextEditorDialogFragment extends DialogFragment {
 
             String inputText = addTextEditText.getText().toString();
             if (!TextUtils.isEmpty(inputText) && onTextEditorListener != null) {
-                onTextEditorListener.onDone(inputText, colorCode);
+                onTextEditorListener.onDone(inputText, colorCode, textSize);
             }
             dismiss();
         });
@@ -135,5 +167,9 @@ public class TextEditorDialogFragment extends DialogFragment {
         } else {
             addTextEditText.setHint(null);
         }
+    }
+
+    private static float getDefaultTextSize(@NonNull Context context) {
+        return context.getResources().getDimension(R.dimen.text_sticker_size) / context.getResources().getDisplayMetrics().scaledDensity;
     }
 }
