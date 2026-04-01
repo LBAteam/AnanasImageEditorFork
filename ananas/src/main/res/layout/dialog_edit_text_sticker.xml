@@ -56,7 +56,7 @@
         android:layout_below="@+id/add_text_done_tv"
         android:gravity="center"
         android:hint="@string/iamutkarshtiwari_github_io_ananas_input_hint"
-        android:inputType="textMultiLine"
+        android:inputType="textMultiLine|textCapSentences"
         android:textColorHint="@color/text_color"
         android:textSize="@dimen/text_size_40sp" />
 
