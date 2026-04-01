@@ -41,6 +41,7 @@ public class CropFragment extends BaseEditFragment {
     private LinearLayout ratioList;
     private CropImageView cropPanel;
     private OnLoadingDialogListener loadingDialogListener;
+    private boolean pendingShow;
 
     private final CropRationClick cropRatioClick = new CropRationClick();
     private TextView selectedTextView;
@@ -137,11 +138,20 @@ public class CropFragment extends BaseEditFragment {
         setUpRatioList();
         this.cropPanel = ensureEditActivity().cropPanel;
         backToMenu.setOnClickListener(new BackToMenuClick());
+
+        if (pendingShow) {
+            onShow();
+        }
     }
 
     @Override
     public void onShow() {
-        ensureEditActivity();
+        if (ensureEditActivity() == null || cropPanel == null) {
+            pendingShow = true;
+            return;
+        }
+
+        pendingShow = false;
         activity.mode = EditImageActivity.MODE_CROP;
 
         activity.mainImage.setVisibility(View.GONE);
