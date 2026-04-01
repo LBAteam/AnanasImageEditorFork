@@ -16,8 +16,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 34
-        versionName "1.5.4"
+        versionCode 35
+        versionName "1.5.5"
     }
     buildTypes {
         release {
