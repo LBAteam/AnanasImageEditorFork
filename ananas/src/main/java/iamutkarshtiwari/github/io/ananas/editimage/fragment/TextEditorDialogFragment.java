@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -98,9 +99,9 @@ public class TextEditorDialogFragment extends DialogFragment {
         inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         TextView addTextDoneTv = view.findViewById(R.id.add_text_done_tv);
         SeekBar addTextFontSizeSeekBar = view.findViewById(R.id.add_text_font_size_seek_bar);
-        TextView alignLeft = view.findViewById(R.id.add_text_align_left);
-        TextView alignCenter = view.findViewById(R.id.add_text_align_center);
-        TextView alignRight = view.findViewById(R.id.add_text_align_right);
+        ImageView alignLeft = view.findViewById(R.id.add_text_align_left);
+        ImageView alignCenter = view.findViewById(R.id.add_text_align_center);
+        ImageView alignRight = view.findViewById(R.id.add_text_align_right);
 
         //Setup the color picker for text color
         RecyclerView addTextColorPickerRecyclerView = view.findViewById(R.id.add_text_color_picker_recycler_view);
@@ -214,13 +215,13 @@ public class TextEditorDialogFragment extends DialogFragment {
         return Gravity.CENTER;
     }
 
-    private void updateAlignmentButtons(@NonNull TextView alignLeft, @NonNull TextView alignCenter, @NonNull TextView alignRight) {
+    private void updateAlignmentButtons(@NonNull ImageView alignLeft, @NonNull ImageView alignCenter, @NonNull ImageView alignRight) {
         alignLeft.setSelected(textAlignment == Gravity.START);
         alignCenter.setSelected(textAlignment == Gravity.CENTER);
         alignRight.setSelected(textAlignment == Gravity.END);
 
-        alignLeft.setTextColor(textAlignment == Gravity.START ? ContextCompat.getColor(requireContext(), R.color.black) : ContextCompat.getColor(requireContext(), R.color.white));
-        alignCenter.setTextColor(textAlignment == Gravity.CENTER ? ContextCompat.getColor(requireContext(), R.color.black) : ContextCompat.getColor(requireContext(), R.color.white));
-        alignRight.setTextColor(textAlignment == Gravity.END ? ContextCompat.getColor(requireContext(), R.color.black) : ContextCompat.getColor(requireContext(), R.color.white));
+        alignLeft.setColorFilter(textAlignment == Gravity.START ? ContextCompat.getColor(requireContext(), R.color.black) : ContextCompat.getColor(requireContext(), R.color.white));
+        alignCenter.setColorFilter(textAlignment == Gravity.CENTER ? ContextCompat.getColor(requireContext(), R.color.black) : ContextCompat.getColor(requireContext(), R.color.white));
+        alignRight.setColorFilter(textAlignment == Gravity.END ? ContextCompat.getColor(requireContext(), R.color.black) : ContextCompat.getColor(requireContext(), R.color.white));
     }
 }

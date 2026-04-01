@@ -35,7 +35,7 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/text_color</item>
-        <item name="android:textSize">@dimen/text_sticker_size</item>
+        <item name="android:textSize">@dimen/image_edit_text_size</item>
         <item name="android:maxLines">1</item>
     </style>
 
