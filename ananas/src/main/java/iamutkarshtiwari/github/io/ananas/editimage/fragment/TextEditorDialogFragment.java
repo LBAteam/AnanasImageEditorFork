@@ -36,7 +36,7 @@ public class TextEditorDialogFragment extends DialogFragment {
     private static final String EXTRA_INPUT_TEXT = "extra_input_text";
     private static final String EXTRA_COLOR_CODE = "extra_color_code";
     private static final String EXTRA_TEXT_SIZE = "extra_text_size";
-    private static final int FONT_SIZE_STEP_OFFSET_SP = 6;
+    private static final int FONT_SIZE_STEP_OFFSET_SP = 12;
 
     private EditText addTextEditText;
     private InputMethodManager inputMethodManager;

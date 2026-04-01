@@ -13,7 +13,7 @@
     <dimen name="text_size_18sp">18sp</dimen>
     <dimen name="text_size_40sp">40sp</dimen>
     <dimen name="elevation_2dp">2dp</dimen>
-    <dimen name="text_sticker_size">14sp</dimen>
+    <dimen name="text_sticker_size">28sp</dimen>
     <dimen name="delete_icon_size">20dp</dimen>
     <dimen name="rotate_icon_size">45dp</dimen>
 
