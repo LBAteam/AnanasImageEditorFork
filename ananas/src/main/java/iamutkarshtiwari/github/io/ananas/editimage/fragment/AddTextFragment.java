@@ -98,8 +98,9 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
         if (activity != null && rootView != null) {
             TextView textInputView = rootView.findViewById(R.id.text_sticker_tv);
             float textSize = textInputView != null ? pxToSp(textInputView.getTextSize()) : getDefaultTextSize();
-            TextEditorDialogFragment textEditorDialogFragment = TextEditorDialogFragment.show(activity, text, colorCode, textSize);
-            textEditorDialogFragment.setOnTextEditorListener((inputText, colorCode1, textSize1) -> editText(rootView, inputText, colorCode1, textSize1));
+            int textAlignment = textInputView != null ? getTextAlignment(textInputView) : Gravity.CENTER;
+            TextEditorDialogFragment textEditorDialogFragment = TextEditorDialogFragment.show(activity, text, colorCode, textSize, textAlignment);
+            textEditorDialogFragment.setOnTextEditorListener((inputText, colorCode1, textSize1, textAlignment1) -> editText(rootView, inputText, colorCode1, textSize1, textAlignment1));
         }
     }
 
@@ -273,7 +274,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void addText(String text, final int colorCodeTextView, final float textSize) {
+    private void addText(String text, final int colorCodeTextView, final float textSize, final int textAlignment) {
         if (activity == null || this.textStickersParentView == null) {
             return;
         }
@@ -286,6 +287,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
         textInputTv.setText(text);
         textInputTv.setTextColor(colorCodeTextView);
         textInputTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+        applyTextAlignment(textInputTv, textAlignment);
 
         MultiTouchListener multiTouchListener = new MultiTouchListener(
                 imgClose,
@@ -357,13 +359,14 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
         }
     }
 
-    private void editText(View view, String inputText, int colorCode, float textSize) {
+    private void editText(View view, String inputText, int colorCode, float textSize, int textAlignment) {
         TextView inputTextView = view.findViewById(R.id.text_sticker_tv);
         if (inputTextView != null && addedViews != null && textStickersParentView != null
                 && addedViews.contains(view) && !TextUtils.isEmpty(inputText)) {
             inputTextView.setText(inputText);
             inputTextView.setTextColor(colorCode);
             inputTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+            applyTextAlignment(inputTextView, textAlignment);
             textStickersParentView.updateViewLayout(view, view.getLayoutParams());
             int i = addedViews.indexOf(view);
             if (i > -1) addedViews.set(i, view);
@@ -376,6 +379,28 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
 
     private float pxToSp(float pixelValue) {
         return pixelValue / getResources().getDisplayMetrics().scaledDensity;
+    }
+
+    private void applyTextAlignment(@NonNull TextView textView, int alignment) {
+        if (alignment == Gravity.START) {
+            textView.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
+        } else if (alignment == Gravity.END) {
+            textView.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
+        } else {
+            textView.setGravity(Gravity.CENTER);
+        }
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+    }
+
+    private int getTextAlignment(@NonNull TextView textView) {
+        int horizontalGravity = textView.getGravity() & Gravity.HORIZONTAL_GRAVITY_MASK;
+        if (horizontalGravity == Gravity.START || horizontalGravity == Gravity.LEFT) {
+            return Gravity.START;
+        }
+        if (horizontalGravity == Gravity.END || horizontalGravity == Gravity.RIGHT) {
+            return Gravity.END;
+        }
+        return Gravity.CENTER;
     }
 
     private void addViewToParent(View view) {

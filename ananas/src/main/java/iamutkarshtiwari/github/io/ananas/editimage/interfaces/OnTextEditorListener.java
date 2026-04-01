@@ -1,5 +1,5 @@
 package iamutkarshtiwari.github.io.ananas.editimage.interfaces;
 
 public interface OnTextEditorListener {
-    void onDone(String inputText, int colorCode, float textSize);
+    void onDone(String inputText, int colorCode, float textSize, int textAlignment);
 }

@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,23 +37,27 @@ public class TextEditorDialogFragment extends DialogFragment {
     private static final String EXTRA_INPUT_TEXT = "extra_input_text";
     private static final String EXTRA_COLOR_CODE = "extra_color_code";
     private static final String EXTRA_TEXT_SIZE = "extra_text_size";
+    private static final String EXTRA_TEXT_ALIGNMENT = "extra_text_alignment";
     private static final int FONT_SIZE_STEP_OFFSET_SP = 12;
 
     private EditText addTextEditText;
     private InputMethodManager inputMethodManager;
     private int colorCode;
     private float textSize;
+    private int textAlignment;
     private OnTextEditorListener onTextEditorListener;
 
     //Show dialog with provide text and text color
     public static TextEditorDialogFragment show(@NonNull AppCompatActivity appCompatActivity,
                                                 @NonNull String inputText,
                                                 @ColorInt int initialColorCode,
-                                                float textSize) {
+                                                float textSize,
+                                                int textAlignment) {
         Bundle args = new Bundle();
         args.putString(EXTRA_INPUT_TEXT, inputText);
         args.putInt(EXTRA_COLOR_CODE, initialColorCode);
         args.putFloat(EXTRA_TEXT_SIZE, textSize);
+        args.putInt(EXTRA_TEXT_ALIGNMENT, textAlignment);
         TextEditorDialogFragment fragment = new TextEditorDialogFragment();
         fragment.setArguments(args);
         fragment.show(appCompatActivity.getSupportFragmentManager(), TAG);
@@ -61,7 +66,7 @@ public class TextEditorDialogFragment extends DialogFragment {
 
     //Show dialog with default text input as empty and text color white
     public static TextEditorDialogFragment show(@NonNull AppCompatActivity appCompatActivity) {
-        return show(appCompatActivity, "", ContextCompat.getColor(appCompatActivity, R.color.white), getDefaultTextSize(appCompatActivity));
+        return show(appCompatActivity, "", ContextCompat.getColor(appCompatActivity, R.color.white), getDefaultTextSize(appCompatActivity), Gravity.CENTER);
     }
 
     @Override
@@ -93,6 +98,9 @@ public class TextEditorDialogFragment extends DialogFragment {
         inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         TextView addTextDoneTv = view.findViewById(R.id.add_text_done_tv);
         SeekBar addTextFontSizeSeekBar = view.findViewById(R.id.add_text_font_size_seek_bar);
+        TextView alignLeft = view.findViewById(R.id.add_text_align_left);
+        TextView alignCenter = view.findViewById(R.id.add_text_align_center);
+        TextView alignRight = view.findViewById(R.id.add_text_align_right);
 
         //Setup the color picker for text color
         RecyclerView addTextColorPickerRecyclerView = view.findViewById(R.id.add_text_color_picker_recycler_view);
@@ -112,8 +120,11 @@ public class TextEditorDialogFragment extends DialogFragment {
         colorCode = getArguments().getInt(EXTRA_COLOR_CODE);
         final float defaultTextSize = getDefaultTextSize(requireContext());
         textSize = getArguments().getFloat(EXTRA_TEXT_SIZE, defaultTextSize);
+        textAlignment = getArguments().getInt(EXTRA_TEXT_ALIGNMENT, Gravity.CENTER);
         addTextEditText.setTextColor(colorCode);
         addTextEditText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+        applyTextAlignment(addTextEditText, textAlignment);
+        updateAlignmentButtons(alignLeft, alignCenter, alignRight);
         updateHintVisibility();
         addTextEditText.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN && TextUtils.isEmpty(addTextEditText.getText())) {
@@ -142,6 +153,21 @@ public class TextEditorDialogFragment extends DialogFragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+        alignLeft.setOnClickListener(v -> {
+            textAlignment = Gravity.START;
+            applyTextAlignment(addTextEditText, textAlignment);
+            updateAlignmentButtons(alignLeft, alignCenter, alignRight);
+        });
+        alignCenter.setOnClickListener(v -> {
+            textAlignment = Gravity.CENTER;
+            applyTextAlignment(addTextEditText, textAlignment);
+            updateAlignmentButtons(alignLeft, alignCenter, alignRight);
+        });
+        alignRight.setOnClickListener(v -> {
+            textAlignment = Gravity.END;
+            applyTextAlignment(addTextEditText, textAlignment);
+            updateAlignmentButtons(alignLeft, alignCenter, alignRight);
+        });
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
         //Make a callback on activity when user is done with text editing
@@ -150,7 +176,7 @@ public class TextEditorDialogFragment extends DialogFragment {
 
             String inputText = addTextEditText.getText().toString();
             if (!TextUtils.isEmpty(inputText) && onTextEditorListener != null) {
-                onTextEditorListener.onDone(inputText, colorCode, textSize);
+                onTextEditorListener.onDone(inputText, colorCode, textSize, textAlignment);
             }
             dismiss();
         });
@@ -171,5 +197,30 @@ public class TextEditorDialogFragment extends DialogFragment {
 
     private static float getDefaultTextSize(@NonNull Context context) {
         return context.getResources().getDimension(R.dimen.text_sticker_size) / context.getResources().getDisplayMetrics().scaledDensity;
+    }
+
+    private void applyTextAlignment(@NonNull TextView textView, int alignment) {
+        textView.setGravity(getGravityForAlignment(alignment));
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+    }
+
+    private int getGravityForAlignment(int alignment) {
+        if (alignment == Gravity.START) {
+            return Gravity.START | Gravity.CENTER_VERTICAL;
+        }
+        if (alignment == Gravity.END) {
+            return Gravity.END | Gravity.CENTER_VERTICAL;
+        }
+        return Gravity.CENTER;
+    }
+
+    private void updateAlignmentButtons(@NonNull TextView alignLeft, @NonNull TextView alignCenter, @NonNull TextView alignRight) {
+        alignLeft.setSelected(textAlignment == Gravity.START);
+        alignCenter.setSelected(textAlignment == Gravity.CENTER);
+        alignRight.setSelected(textAlignment == Gravity.END);
+
+        alignLeft.setTextColor(textAlignment == Gravity.START ? ContextCompat.getColor(requireContext(), R.color.black) : ContextCompat.getColor(requireContext(), R.color.white));
+        alignCenter.setTextColor(textAlignment == Gravity.CENTER ? ContextCompat.getColor(requireContext(), R.color.black) : ContextCompat.getColor(requireContext(), R.color.white));
+        alignRight.setTextColor(textAlignment == Gravity.END ? ContextCompat.getColor(requireContext(), R.color.black) : ContextCompat.getColor(requireContext(), R.color.white));
     }
 }
