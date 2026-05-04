@@ -1,6 +1,5 @@
 package iamutkarshtiwari.github.io.imageeditorsample.imagepicker.activity
 
-import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -11,7 +10,6 @@ import android.os.Parcelable
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.core.content.FileProvider
-import iamutkarshtiwari.github.io.imageeditorsample.BuildConfig.APPLICATION_ID
 import iamutkarshtiwari.github.io.imageeditorsample.R
 import iamutkarshtiwari.github.io.imageeditorsample.imagepicker.ParentActivity
 import iamutkarshtiwari.github.io.imageeditorsample.imagepicker.utils.compressImageFile
@@ -22,42 +20,16 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.*
 
-private const val REQ_CAPTURE = 100
 private const val RES_IMAGE = 100
 
 class ImagePickerActivity : ParentActivity(R.layout.activity_main) {
     private var queryImageUrl: String = ""
     private var imgPath: String = ""
     private var imageUri: Uri? = null
-    private val permissions = arrayOf(Manifest.permission.CAMERA)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        if (isPermissionsAllowed(permissions, true, REQ_CAPTURE)) {
-            chooseImage()
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            REQ_CAPTURE -> {
-                if (isAllPermissionsGranted(grantResults)) {
-                    chooseImage()
-                } else {
-                    Toast.makeText(
-                        this,
-                        getString(R.string.ananas_image_editor_permission_not_granted),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
+        chooseImage()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -66,6 +38,8 @@ class ImagePickerActivity : ParentActivity(R.layout.activity_main) {
             RES_IMAGE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     returnResult(data)
+                } else {
+                    finish()
                 }
             }
         }
@@ -106,6 +80,13 @@ class ImagePickerActivity : ParentActivity(R.layout.activity_main) {
         var intent: Intent? = getPickImageIntent()
         if (intent != null) {
             startActivityForResult(intent, RES_IMAGE)
+        } else {
+            Toast.makeText(
+                this,
+                getString(R.string.ananas_image_editor_select_error),
+                Toast.LENGTH_SHORT
+            ).show()
+            finish()
         }
     }
 
@@ -114,13 +95,17 @@ class ImagePickerActivity : ParentActivity(R.layout.activity_main) {
 
         var intentList: MutableList<Intent> = ArrayList()
 
-        val pickIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        val pickIntent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "image/*"
+        }
 
         val takePhotoIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, setImageUri())
+        takePhotoIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
 
-        intentList = addIntentsToList(this, intentList, pickIntent)
         intentList = addIntentsToList(this, intentList, takePhotoIntent)
+        intentList = addIntentsToList(this, intentList, pickIntent)
 
         if (intentList.size > 0) {
             chooserIntent = Intent.createChooser(
@@ -146,7 +131,7 @@ class ImagePickerActivity : ParentActivity(R.layout.activity_main) {
         file.createNewFile()
         imageUri = FileProvider.getUriForFile(
             this,
-            APPLICATION_ID + getString(R.string.file_provider_name),
+            packageName + getString(R.string.file_provider_name),
             file
         )
         imgPath = file.absolutePath

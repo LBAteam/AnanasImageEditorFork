@@ -54,6 +54,9 @@ public class StickerView extends View {
     }
 
     public void addBitImage(final Bitmap addBit) {
+        if (addBit == null) {
+            return;
+        }
         StickerItem item = new StickerItem(this.getContext());
         item.init(addBit, this);
         if (currentItem != null) {

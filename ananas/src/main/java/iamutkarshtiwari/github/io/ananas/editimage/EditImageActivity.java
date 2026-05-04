@@ -1,11 +1,9 @@
 package iamutkarshtiwari.github.io.ananas.editimage;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,7 +22,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
@@ -34,8 +31,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.canhub.cropper.CropImageView;
-
-import org.jetbrains.annotations.NotNull;
 
 import iamutkarshtiwari.github.io.ananas.BaseActivity;
 import iamutkarshtiwari.github.io.ananas.R;
@@ -52,7 +47,6 @@ import iamutkarshtiwari.github.io.ananas.editimage.fragment.paint.PaintFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.interfaces.OnLoadingDialogListener;
 import iamutkarshtiwari.github.io.ananas.editimage.interfaces.OnMainBitmapChangeListener;
 import iamutkarshtiwari.github.io.ananas.editimage.utils.BitmapUtils;
-import iamutkarshtiwari.github.io.ananas.editimage.utils.PermissionUtils;
 import iamutkarshtiwari.github.io.ananas.editimage.view.BrightnessView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.CustomPaintView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.CustomViewPager;
@@ -81,7 +75,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     public static final int MODE_BEAUTY = 7;
     public static final int MODE_BRIGHTNESS = 8;
     public static final int MODE_SATURATION = 9;
-    private static final int PERMISSIONS_REQUEST_CODE = 110;
 
     public String sourceFilePath;
     public String outputFilePath;
@@ -237,41 +230,11 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
         redoUndoController = new RedoUndoController(this, findViewById(R.id.redo_undo_panel));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            String[] requiredPermissionsAPI33 = new String[]{
-                    Manifest.permission.READ_MEDIA_IMAGES
-            };
-            if (!PermissionUtils.hasPermissions(this, requiredPermissionsAPI33)) {
-                ActivityCompat.requestPermissions(this, requiredPermissionsAPI33, PERMISSIONS_REQUEST_CODE);
-            }
-        }
-        else {
-            String[] requiredPermissions = new String[]{
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-            };
-            if (!PermissionUtils.hasPermissions(this, requiredPermissions)) {
-                ActivityCompat.requestPermissions(this, requiredPermissions, PERMISSIONS_REQUEST_CODE);
-            }
-        }
-
         loadImageFromFile(sourceFilePath);
     }
 
     private void setOnMainBitmapChangeListener(OnMainBitmapChangeListener listener) {
         onMainBitmapChangeListener = listener;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NotNull String permissions[], @NotNull int[] grantResults) {
-        if (requestCode == PERMISSIONS_REQUEST_CODE) {
-            if (!(grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                finish();
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override

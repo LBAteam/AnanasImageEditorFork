@@ -13,20 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import iamutkarshtiwari.github.io.ananas.R;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.StickerFragment;
+import iamutkarshtiwari.github.io.ananas.editimage.model.StickerCatalog;
+import iamutkarshtiwari.github.io.ananas.editimage.model.StickerPack;
 
 public class StickerTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
-    private String[] stickerPath ;
-    private String[] stickerPathName;
-    private int[] stickerCount;
-    private StickerFragment stickerFragment;
-    private ImageClick imageClick = new ImageClick();
+    private final StickerPack[] stickerPacks;
+    private final StickerFragment stickerFragment;
+    private final ImageClick imageClick = new ImageClick();
 
     public StickerTypeAdapter(StickerFragment fragment) {
         super();
         this.stickerFragment = fragment;
-        stickerPath = stickerFragment.getResources().getStringArray(R.array.iamutkarshtiwari_github_io_ananas_types);
-        stickerPathName = stickerFragment.getResources().getStringArray(R.array.iamutkarshtiwari_github_io_ananas_type_names);
-        stickerCount = stickerFragment.getResources().getIntArray(R.array.iamutkarshtiwari_github_io_ananas_type_count);
+        stickerPacks = StickerCatalog.getPacks();
     }
 
     public class ImageHolder extends ViewHolder {
@@ -42,7 +40,7 @@ public class StickerTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return stickerPathName.length;
+        return stickerPacks.length;
     }
 
     @Override
@@ -61,19 +59,19 @@ public class StickerTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(@NotNull ViewHolder holder, int position) {
         ImageHolder imageHolder = (ImageHolder) holder;
-        String name = stickerPathName[position];
-        imageHolder.text.setText(name);
-        imageHolder.text.setTag(R.id.iamutkarshtiwari_github_io_ananas_TAG_STICKERS_PATH, stickerPath[position]);
-        imageHolder.text.setTag(R.id.iamutkarshtiwari_github_io_ananas_TAG_STICKERS_COUNT, stickerCount[position]);
+        StickerPack stickerPack = stickerPacks[position];
+        imageHolder.text.setText(stickerPack.getNameResId());
+        imageHolder.text.setTag(stickerPack);
         imageHolder.text.setOnClickListener(imageClick);
     }
 
     private final class ImageClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-            String data = (String) v.getTag(R.id.iamutkarshtiwari_github_io_ananas_TAG_STICKERS_PATH);
-            int count = (int) v.getTag(R.id.iamutkarshtiwari_github_io_ananas_TAG_STICKERS_COUNT);
-            stickerFragment.swipToStickerDetails(data, count);
+            Object data = v.getTag();
+            if (data instanceof StickerPack) {
+                stickerFragment.showStickerDetails((StickerPack) data);
+            }
         }
     }
 }

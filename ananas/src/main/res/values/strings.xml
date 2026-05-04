@@ -17,6 +17,9 @@
     <string name="iamutkarshtiwari_github_io_ananas_saturation">Saturation</string>
     <string name="iamutkarshtiwari_github_io_ananas_size">Size</string>
     <string name="iamutkarshtiwari_github_io_ananas_opacity">Opacity</string>
+    <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_faces">Decoration</string>
+    <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_animals">Animals</string>
+    <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_words">Words</string>
 
     <string name="materialcolorpicker__errHex">Hex Code Format incorrect</string>
     <string name="materialcolorpicker__btnSelectColor">Select</string>
@@ -62,15 +65,6 @@
         <item>Shine</item>
     </string-array>
 
-    <string-array name="iamutkarshtiwari_github_io_ananas_type_names">
-        <item>Type 1</item>
-        <item>Type 2</item>
-        <item>Type 3</item>
-        <item>Type 4</item>
-        <item>Type 5</item>
-        <item>Type 6</item>
-    </string-array>
-
     <string-array translatable="false" name="iamutkarshtiwari_github_io_ananas_filter_drawable_list">
         <item>filter_1</item>
         <item>filter_2</item>
@@ -86,24 +80,4 @@
         <item>filter_12</item>
     </string-array>
 
-    <string-array translatable="false" name="iamutkarshtiwari_github_io_ananas_types">
-        <item>type1</item>
-        <item>type2</item>
-        <item>type3</item>
-        <item>type4</item>
-        <item>type5</item>
-        <item>type6</item>
-    </string-array>
-
-    <integer-array translatable="false" name="iamutkarshtiwari_github_io_ananas_type_count">
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>3</item>
-        <item>5</item>
-    </integer-array>
-
-    <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_PATH" />
-    <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_COUNT" />
 </resources>

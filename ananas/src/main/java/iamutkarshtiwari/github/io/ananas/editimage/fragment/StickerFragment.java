@@ -15,6 +15,7 @@ import android.widget.ViewFlipper;
 
 import java.util.LinkedHashMap;
 
+import androidx.annotation.DrawableRes;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +27,7 @@ import iamutkarshtiwari.github.io.ananas.editimage.EditImageActivity;
 import iamutkarshtiwari.github.io.ananas.editimage.ModuleConfig;
 import iamutkarshtiwari.github.io.ananas.editimage.adapter.StickerAdapter;
 import iamutkarshtiwari.github.io.ananas.editimage.adapter.StickerTypeAdapter;
+import iamutkarshtiwari.github.io.ananas.editimage.model.StickerPack;
 import iamutkarshtiwari.github.io.ananas.editimage.utils.Matrix3;
 import iamutkarshtiwari.github.io.ananas.editimage.view.StickerItem;
 import iamutkarshtiwari.github.io.ananas.editimage.view.StickerView;
@@ -43,6 +45,10 @@ public class StickerFragment extends BaseEditFragment {
     private ViewFlipper flipper;
     private StickerView stickerView;
     private StickerAdapter stickerAdapter;
+    private RecyclerView typeList;
+    private RecyclerView stickerList;
+    private LinearLayoutManager typeListLayoutManager;
+    private LinearLayoutManager stickerListLayoutManager;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private Dialog loadingDialog;
 
@@ -74,47 +80,54 @@ public class StickerFragment extends BaseEditFragment {
         flipper.setInAnimation(activity, R.anim.in_bottom_to_top);
         flipper.setOutAnimation(activity, R.anim.out_bottom_to_top);
 
-        RecyclerView typeList = mainView
+        typeList = mainView
                 .findViewById(R.id.stickers_type_list);
         typeList.setHasFixedSize(true);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(activity);
-        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        typeList.setLayoutManager(mLayoutManager);
+        typeListLayoutManager = new LinearLayoutManager(activity);
+        typeListLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        typeList.setLayoutManager(typeListLayoutManager);
         typeList.setAdapter(new StickerTypeAdapter(this));
 
-        RecyclerView stickerList = mainView.findViewById(R.id.stickers_list);
+        stickerList = mainView.findViewById(R.id.stickers_list);
         stickerList.setHasFixedSize(true);
-        LinearLayoutManager stickerListLayoutManager = new LinearLayoutManager(
-                activity);
+        stickerListLayoutManager = new LinearLayoutManager(activity);
         stickerListLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         stickerList.setLayoutManager(stickerListLayoutManager);
-        stickerAdapter = new StickerAdapter(this);
-        stickerList.setAdapter(stickerAdapter);
+        stickerAdapter = createStickerAdapter();
 
         View backToMenu = mainView.findViewById(R.id.back_to_main);
         backToMenu.setOnClickListener(new BackToMenuClick());
 
         View backToType = mainView.findViewById(R.id.back_to_type);
-        backToType.setOnClickListener(v -> flipper.showPrevious());
+        backToType.setOnClickListener(v -> showStickerTypes());
     }
 
     @Override
     public void onShow() {
         activity.mode = EditImageActivity.MODE_STICKERS;
+        showStickerTypes();
         activity.stickerFragment.getStickerView().setVisibility(
                 View.VISIBLE);
         activity.bannerFlipper.showNext();
     }
 
-    public void swipToStickerDetails(String path, int stickerCount) {
-        stickerAdapter.addStickerImages(path, stickerCount);
-        flipper.showNext();
+    public void showStickerDetails(StickerPack stickerPack) {
+        if (stickerPack == null) {
+            return;
+        }
+        stickerAdapter = createStickerAdapter();
+        stickerAdapter.setStickers(stickerPack.getStickerResIds());
+        resetStickerListPosition();
+        if (flipper.getDisplayedChild() != 1) {
+            flipper.setDisplayedChild(1);
+        }
     }
 
-    public void selectedStickerItem(String path) {
-        int imageKey = getResources().getIdentifier(path, "drawable", getContext().getPackageName());
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageKey);
-        stickerView.addBitImage(bitmap);
+    public void selectedStickerItem(@DrawableRes int stickerResId) {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), stickerResId);
+        if (bitmap != null) {
+            stickerView.addBitImage(bitmap);
+        }
     }
 
     private StickerView getStickerView() {
@@ -144,9 +157,43 @@ public class StickerFragment extends BaseEditFragment {
     public void backToMain() {
         activity.mode = EditImageActivity.MODE_NONE;
         activity.bottomGallery.setCurrentItem(0);
+        showStickerTypes();
         stickerView.clear();
         stickerView.setVisibility(View.GONE);
         activity.bannerFlipper.showPrevious();
+    }
+
+    private void showStickerTypes() {
+        resetTypeListPosition();
+        resetStickerListPosition();
+        if (flipper.getDisplayedChild() != 0) {
+            flipper.setDisplayedChild(0);
+        }
+    }
+
+    private void resetTypeListPosition() {
+        if (typeList != null && typeListLayoutManager != null) {
+            typeList.stopScroll();
+            typeListLayoutManager.scrollToPositionWithOffset(0, 0);
+            typeList.post(() -> typeListLayoutManager.scrollToPositionWithOffset(0, 0));
+        }
+    }
+
+    private void resetStickerListPosition() {
+        if (stickerList != null && stickerListLayoutManager != null) {
+            stickerList.stopScroll();
+            stickerListLayoutManager.scrollToPositionWithOffset(0, 0);
+            stickerList.post(() -> stickerListLayoutManager.scrollToPositionWithOffset(0, 0));
+        }
+    }
+
+    private StickerAdapter createStickerAdapter() {
+        StickerAdapter adapter = new StickerAdapter(this);
+        if (stickerList != null) {
+            stickerList.getRecycledViewPool().clear();
+            stickerList.setAdapter(adapter);
+        }
+        return adapter;
     }
 
     public void applyStickers() {

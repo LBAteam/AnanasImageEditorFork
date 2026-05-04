@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28"/>
     <uses-feature android:name="android.hardware.camera"
-        android:required="true" />
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -47,7 +46,7 @@
             <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
         <intent>
-            <action android:name="android.intent.action.PICK" />
+            <action android:name="android.intent.action.OPEN_DOCUMENT" />
             <data android:mimeType="image/*" />
         </intent>
     </queries>

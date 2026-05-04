@@ -1,12 +1,9 @@
 package iamutkarshtiwari.github.io.imageeditorsample;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -17,7 +14,6 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import java.io.File;
 
@@ -34,9 +30,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    public static final int REQUEST_PERMISSION_STORAGE = 1;
-    public static final int ACTION_REQUEST_EDITIMAGE = 9;
-
     private ImageView imgView;
     private Bitmap mainBitmap;
     private Dialog loadingDialog;
@@ -94,19 +87,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         selectAlbum.setOnClickListener(this);
         editImage.setOnClickListener(this);
 
-        loadingDialog = BaseActivity.getLoadingDialog(this, R.string.iamutkarshtiwari_github_io_ananas_loading,
+        loadingDialog = BaseActivity.getLoadingDialog(this, iamutkarshtiwari.github.io.ananas.R.string.iamutkarshtiwari_github_io_ananas_loading,
                 false);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.edit_image:
-                editImageClick();
-                break;
-            case R.id.photo_picker:
-                selectFromAlbum();
-                break;
+        int viewId = v.getId();
+        if (viewId == R.id.edit_image) {
+            editImageClick();
+        } else if (viewId == R.id.photo_picker) {
+            selectFromAlbum();
         }
     }
 
@@ -130,33 +121,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             EditImageActivity.start(editResultLauncher, intent, this);
         } catch (Exception e) {
-            Toast.makeText(this, R.string.iamutkarshtiwari_github_io_ananas_not_selected, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, iamutkarshtiwari.github.io.ananas.R.string.iamutkarshtiwari_github_io_ananas_not_selected, Toast.LENGTH_SHORT).show();
             Log.e("Demo App", e.getMessage());
         }
     }
 
     private void selectFromAlbum() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            openAlbumWithPermissionsCheck();
-        } else {
-            openAlbum();
-        }
-    }
-
-    private void openAlbum() {
         Intent intent = new Intent(this, ImagePickerActivity.class);
         pickResultLauncher.launch(intent);
-    }
-
-    private void openAlbumWithPermissionsCheck() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    REQUEST_PERMISSION_STORAGE);
-            return;
-        }
-        openAlbum();
     }
 
     private void handleEditorImage(Intent data) {
@@ -187,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         this::setMainBitmap,
                         e -> { e.printStackTrace();
                             Toast.makeText(
-                                this, R.string.iamutkarshtiwari_github_io_ananas_load_error, Toast.LENGTH_SHORT).show();}
+                                this, iamutkarshtiwari.github.io.ananas.R.string.iamutkarshtiwari_github_io_ananas_load_error, Toast.LENGTH_SHORT).show();}
                 );
 
         compositeDisposable.add(applyRotationDisposable);

@@ -15,6 +15,9 @@
     <string name="iamutkarshtiwari_github_io_ananas_saturation">飽和</string>
     <string name="iamutkarshtiwari_github_io_ananas_size">寸法</string>
     <string name="iamutkarshtiwari_github_io_ananas_opacity">不透明度</string>
+    <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_faces">デコレーション</string>
+    <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_animals">動物</string>
+    <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_words">言葉</string>
 
     <string name="materialcolorpicker__errHex">16進コード形式が正しくない</string>
     <string name="materialcolorpicker__btnSelectColor">選び出す</string>
@@ -61,33 +64,6 @@
         <item>filter_12</item>
     </string-array>
 
-    <string-array translatable="false" name="iamutkarshtiwari_github_io_ananas_types">
-        <item>type1</item>
-        <item>type2</item>
-        <item>type3</item>
-        <item>type4</item>
-        <item>type5</item>
-        <item>type6</item>
-    </string-array>
-
-    <string-array name="iamutkarshtiwari_github_io_ananas_type_names">
-        <item>タイプ 1</item>
-        <item>タイプ 2</item>
-        <item>タイプ 3</item>
-        <item>タイプ 4</item>
-        <item>タイプ 5</item>
-        <item>タイプ 6</item>
-    </string-array>
-
-    <integer-array translatable="false" name="iamutkarshtiwari_github_io_ananas_type_count">
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>4</item>
-        <item>5</item>
-    </integer-array>
-
     <string name="iamutkarshtiwari_github_io_ananas_more">もっと</string>
     <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">編集した画像は保存されません。退室しますか？</string>
     <string name="iamutkarshtiwari_github_io_ananas_confirm">確認</string>
@@ -97,8 +73,6 @@
     <string name="iamutkarshtiwari_github_io_ananas_smooth">滑らかさ</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">スキントーン</string>
 
-    <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_PATH" />
-    <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_COUNT" />
     <string name="iamutkarshtiwari_github_io_ananas_eraser">消しゴム</string>
     <string name="iamutkarshtiwari_github_io_ananas_brush">絵筆</string>
 </resources>

@@ -22,18 +22,30 @@ configurations.all {
     }
 }
 
+ext {
+    buildToolsVersion = "34.0.0"
+    minSdkVersion = 24
+    targetSdkVersion = 34
+    compileSdkVersion = 34
+}
+
 allprojects {
     repositories {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
     }
+}
 
-    project.ext {
-        buildToolsVersion="34.0.0"
-        minSdkVersion=24
-        targetSdkVersion=34
-        compileSdkVersion=34
+subprojects {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+
+    tasks.matching { it.name.startsWith("kaptGenerateStubs") }.configureEach {
+        if (it.hasProperty("kotlinOptions")) {
+            it.kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+        }
     }
 }
 

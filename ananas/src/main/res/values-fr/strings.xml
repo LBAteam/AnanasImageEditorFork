@@ -17,6 +17,9 @@
     <string name="iamutkarshtiwari_github_io_ananas_saturation">Saturation</string>
     <string name="iamutkarshtiwari_github_io_ananas_size">Taille</string>
     <string name="iamutkarshtiwari_github_io_ananas_opacity">Opacité</string>
+    <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_faces">Décoration</string>
+    <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_animals">Animaux</string>
+    <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_words">Mots</string>
 
     <string name="materialcolorpicker__errHex">Format de code hexadécimal incorrect</string>
     <string name="materialcolorpicker__btnSelectColor">Sélectionner</string>
@@ -63,33 +66,6 @@
         <item>filter_12</item>
     </string-array>
 
-    <string-array translatable="false" name="iamutkarshtiwari_github_io_ananas_types">
-        <item>type1</item>
-        <item>type2</item>
-        <item>type3</item>
-        <item>type4</item>
-        <item>type5</item>
-        <item>type6</item>
-    </string-array>
-
-    <string-array name="iamutkarshtiwari_github_io_ananas_type_names">
-        <item>Type 1</item>
-        <item>Type 2</item>
-        <item>Type 3</item>
-        <item>Type 4</item>
-        <item>Type 5</item>
-        <item>Type 6</item>
-    </string-array>
-
-    <integer-array translatable="false" name="iamutkarshtiwari_github_io_ananas_type_count">
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>3</item>
-        <item>5</item>
-    </integer-array>
-
     <string name="iamutkarshtiwari_github_io_ananas_more">Plus</string>
     <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">L\'image modifiée n\'est pas enregistrée. Voulez-vous sortir? </string>
     <string name="iamutkarshtiwari_github_io_ananas_confirm">Confirmer</string>
@@ -99,6 +75,4 @@
     <string name="iamutkarshtiwari_github_io_ananas_smooth">Douceur</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">Teint</string>
 
-    <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_PATH" />
-    <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_COUNT" />
 </resources>
