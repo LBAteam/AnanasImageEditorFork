@@ -6,6 +6,7 @@
     <string name="iamutkarshtiwari_github_io_ananas_done">FERTIG</string>
     <string name="iamutkarshtiwari_github_io_ananas_apply">ANWENDEN</string>
     <string name="iamutkarshtiwari_github_io_ananas_stickers">Aufkleber</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shapes">Formen</string>
     <string name="iamutkarshtiwari_github_io_ananas_filter">Filter</string>
     <string name="iamutkarshtiwari_github_io_ananas_crop">Zuschneiden</string>
     <string name="iamutkarshtiwari_github_io_ananas_rotate">Drehen</string>
@@ -20,6 +21,9 @@
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_faces">Dekoration</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_animals">Tiere</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_words">Wörter</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_arrows">Pfeile</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_numbers">Zahlen</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_other">Andere</string>
     <string name="materialcolorpicker__errHex">Hex-Code-Format falsch</string>
     <string name="materialcolorpicker__btnSelectColor">Auswählen</string>
     <string name="iamutkarshtiwari_github_io_ananas_saving_image">Speichern…</string>

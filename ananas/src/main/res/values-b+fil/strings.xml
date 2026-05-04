@@ -6,6 +6,7 @@
     <string name="iamutkarshtiwari_github_io_ananas_done">TAPOS NA</string>
     <string name="iamutkarshtiwari_github_io_ananas_apply">ILAPAT</string>
     <string name="iamutkarshtiwari_github_io_ananas_stickers">Mga Sticker</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shapes">Hugis</string>
     <string name="iamutkarshtiwari_github_io_ananas_filter">Mga Filter</string>
     <string name="iamutkarshtiwari_github_io_ananas_crop">I-crop</string>
     <string name="iamutkarshtiwari_github_io_ananas_rotate">I-rotate</string>
@@ -20,6 +21,9 @@
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_faces">Dekorasyon</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_animals">Mga Hayop</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_words">Mga Salita</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_arrows">Mga Palaso</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_numbers">Mga Numero</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_other">Iba pa</string>
     <string name="materialcolorpicker__errHex">Maling format ng Hex Code</string>
     <string name="materialcolorpicker__btnSelectColor">Piliin</string>
     <string name="iamutkarshtiwari_github_io_ananas_saving_image">Sine-save…</string>

@@ -6,6 +6,7 @@
     <string name="iamutkarshtiwari_github_io_ananas_apply">تطبيق</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_stickers">ملصقات</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shapes">أشكال</string>
     <string name="iamutkarshtiwari_github_io_ananas_filter">المرشحات</string>
     <string name="iamutkarshtiwari_github_io_ananas_crop">  قتصاص</string>
     <string name="iamutkarshtiwari_github_io_ananas_rotate">استدارة</string>
@@ -20,6 +21,9 @@
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_faces">زينة</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_animals">حيوانات</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_words">كلمات</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_arrows">أسهم</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_numbers">أرقام</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_other">أخرى</string>
 
     <string name="materialcolorpicker__errHex">تنسيق الكود السداسي غير صحيح</string>
     <string name="materialcolorpicker__btnSelectColor">تحديد</string>

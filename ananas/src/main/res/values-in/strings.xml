@@ -6,6 +6,7 @@
     <string name="iamutkarshtiwari_github_io_ananas_done">SELESAI</string>
     <string name="iamutkarshtiwari_github_io_ananas_apply">TERAPKAN</string>
     <string name="iamutkarshtiwari_github_io_ananas_stickers">Stiker</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shapes">Bentuk</string>
     <string name="iamutkarshtiwari_github_io_ananas_filter">Filter</string>
     <string name="iamutkarshtiwari_github_io_ananas_crop">Pangkas</string>
     <string name="iamutkarshtiwari_github_io_ananas_rotate">Putar</string>
@@ -20,6 +21,9 @@
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_faces">Dekorasi</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_animals">Hewan</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_words">Kata-kata</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_arrows">Panah</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_numbers">Angka</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_other">Lainnya</string>
     <string name="materialcolorpicker__errHex">Format Kode Hex salah</string>
     <string name="materialcolorpicker__btnSelectColor">Pilih</string>
     <string name="iamutkarshtiwari_github_io_ananas_saving_image">Menyimpan…</string>

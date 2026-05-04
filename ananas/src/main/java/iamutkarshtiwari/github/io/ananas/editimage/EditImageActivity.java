@@ -41,6 +41,7 @@ import iamutkarshtiwari.github.io.ananas.editimage.fragment.FilterListFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.MainMenuFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.RotateFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.SaturationFragment;
+import iamutkarshtiwari.github.io.ananas.editimage.fragment.ShapeFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.StickerFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.crop.CropFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.paint.PaintFragment;
@@ -67,14 +68,15 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     public static final String IS_IMAGE_EDITED = "is_image_edited";
     public static final int MODE_NONE = 0;
     public static final int MODE_STICKERS = 1;
-    public static final int MODE_FILTER = 2;
-    public static final int MODE_CROP = 3;
-    public static final int MODE_ROTATE = 4;
-    public static final int MODE_TEXT = 5;
-    public static final int MODE_PAINT = 6;
-    public static final int MODE_BEAUTY = 7;
-    public static final int MODE_BRIGHTNESS = 8;
-    public static final int MODE_SATURATION = 9;
+    public static final int MODE_SHAPES = 2;
+    public static final int MODE_FILTER = 3;
+    public static final int MODE_CROP = 4;
+    public static final int MODE_ROTATE = 5;
+    public static final int MODE_TEXT = 6;
+    public static final int MODE_PAINT = 7;
+    public static final int MODE_BEAUTY = 8;
+    public static final int MODE_BRIGHTNESS = 9;
+    public static final int MODE_SATURATION = 10;
 
     public String sourceFilePath;
     public String outputFilePath;
@@ -94,6 +96,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     public RotateImageView rotatePanel;
     public CustomViewPager bottomGallery;
     public StickerFragment stickerFragment;
+    public ShapeFragment shapeFragment;
     public FilterListFragment filterListFragment;
     public CropFragment cropFragment;
     public RotateFragment rotateFragment;
@@ -210,6 +213,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         BottomGalleryAdapter bottomGalleryAdapter = new BottomGalleryAdapter(
                 this.getSupportFragmentManager());
         stickerFragment = StickerFragment.newInstance();
+        shapeFragment = ShapeFragment.newInstance();
         filterListFragment = FilterListFragment.newInstance();
         cropFragment = CropFragment.newInstance();
         rotateFragment = RotateFragment.newInstance();
@@ -262,6 +266,9 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         switch (mode) {
             case MODE_STICKERS:
                 stickerFragment.backToMain();
+                break;
+            case MODE_SHAPES:
+                shapeFragment.backToMain();
                 break;
             case MODE_FILTER:
                 filterListFragment.backToMain();
@@ -462,6 +469,8 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                     return mainMenuFragment;
                 case StickerFragment.INDEX:
                     return stickerFragment;
+                case ShapeFragment.INDEX:
+                    return shapeFragment;
                 case FilterListFragment.INDEX:
                     return filterListFragment;
                 case CropFragment.INDEX:
@@ -484,7 +493,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
         @Override
         public int getCount() {
-            return 10;
+            return 11;
         }
     }
 
@@ -505,6 +514,9 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
             switch (mode) {
                 case MODE_STICKERS:
                     stickerFragment.applyStickers();
+                    break;
+                case MODE_SHAPES:
+                    shapeFragment.applyShapes();
                     break;
                 case MODE_FILTER:
                     filterListFragment.applyFilterImage();

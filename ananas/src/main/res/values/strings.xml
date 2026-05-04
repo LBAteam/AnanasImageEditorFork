@@ -6,6 +6,7 @@
     <string name="iamutkarshtiwari_github_io_ananas_apply">APPLY</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_stickers">Stickers</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shapes">Shapes</string>
     <string name="iamutkarshtiwari_github_io_ananas_filter">Filters</string>
     <string name="iamutkarshtiwari_github_io_ananas_crop">Crop</string>
     <string name="iamutkarshtiwari_github_io_ananas_rotate">Rotate</string>
@@ -20,6 +21,9 @@
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_faces">Decoration</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_animals">Animals</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_words">Words</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_arrows">Arrows</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_numbers">Numbers</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_other">Other</string>
 
     <string name="materialcolorpicker__errHex">Hex Code Format incorrect</string>
     <string name="materialcolorpicker__btnSelectColor">Select</string>

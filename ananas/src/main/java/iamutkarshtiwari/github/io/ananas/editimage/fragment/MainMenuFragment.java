@@ -24,6 +24,7 @@ public class MainMenuFragment extends BaseEditFragment implements
     private View mainView;
 
     private View stickerBtn;
+    private View shapesBtn;
     private View filterBtn;
     private View cropBtn;
     private View rotateBtn;
@@ -60,6 +61,7 @@ public class MainMenuFragment extends BaseEditFragment implements
         super.onActivityCreated(savedInstanceState);
 
         stickerBtn = mainView.findViewById(R.id.btn_stickers);
+        shapesBtn = mainView.findViewById(R.id.btn_shapes);
         filterBtn = mainView.findViewById(R.id.btn_filter);
         cropBtn = mainView.findViewById(R.id.btn_crop);
         rotateBtn = mainView.findViewById(R.id.btn_rotate);
@@ -74,6 +76,7 @@ public class MainMenuFragment extends BaseEditFragment implements
         }
 
         boolean stickerFeature = false;
+        boolean shapesFeature = false;
         boolean filterFeature = false;
         boolean cropFeature = false;
         boolean rotateFeature = false;
@@ -85,6 +88,7 @@ public class MainMenuFragment extends BaseEditFragment implements
 
         if (intentBundle != null) {
             stickerFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.STICKER_FEATURE, false);
+            shapesFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.SHAPES_FEATURE, false);
             filterFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.FILTER_FEATURE, false);
             cropFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.CROP_FEATURE, false);
             rotateFeature = intentBundle.getBoolean(ImageEditorIntentBuilder.ROTATE_FEATURE, false);
@@ -98,6 +102,11 @@ public class MainMenuFragment extends BaseEditFragment implements
         if (stickerFeature) {
             stickerBtn.setVisibility(View.VISIBLE);
             stickerBtn.setOnClickListener(this);
+        }
+
+        if (shapesFeature) {
+            shapesBtn.setVisibility(View.VISIBLE);
+            shapesBtn.setOnClickListener(this);
         }
 
         if (filterFeature) {
@@ -149,6 +158,7 @@ public class MainMenuFragment extends BaseEditFragment implements
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribe(isClickable -> {
                                     stickerBtn.setClickable(isClickable);
+                                    shapesBtn.setClickable(isClickable);
                                     filterBtn.setClickable(isClickable);
                                     cropBtn.setClickable(isClickable);
                                     rotateBtn.setClickable(isClickable);
@@ -181,6 +191,8 @@ public class MainMenuFragment extends BaseEditFragment implements
     public void onClick(View v) {
         if (v == stickerBtn) {
             onStickClick();
+        } else if (v == shapesBtn) {
+            onShapesClick();
         } else if (v == filterBtn) {
             onFilterClick();
         } else if (v == cropBtn) {
@@ -203,6 +215,11 @@ public class MainMenuFragment extends BaseEditFragment implements
     private void onStickClick() {
         activity.bottomGallery.setCurrentItem(StickerFragment.INDEX);
         activity.stickerFragment.onShow();
+    }
+
+    private void onShapesClick() {
+        activity.bottomGallery.setCurrentItem(ShapeFragment.INDEX);
+        activity.shapeFragment.onShow();
     }
 
     private void onFilterClick() {

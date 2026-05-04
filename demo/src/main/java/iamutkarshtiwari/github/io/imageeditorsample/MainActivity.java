@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .withSaturationFeature()
                     .withBeautyFeature()
                     .withStickerFeature()
+                    .withShapesFeature()
                     .withEditorTitle("Photo Editor")
                     .forcePortrait(true)
                     .setSupportActionBarVisibility(false)

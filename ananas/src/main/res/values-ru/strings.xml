@@ -6,6 +6,7 @@
     <string name="iamutkarshtiwari_github_io_ananas_done">ГОТОВ</string>
     <string name="iamutkarshtiwari_github_io_ananas_apply">ПРИМЕНИТЬ</string>
     <string name="iamutkarshtiwari_github_io_ananas_stickers">Наклейки</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shapes">Фигуры</string>
     <string name="iamutkarshtiwari_github_io_ananas_filter">Фильтры</string>
     <string name="iamutkarshtiwari_github_io_ananas_crop">Обрезать</string>
     <string name="iamutkarshtiwari_github_io_ananas_rotate">Повернуть</string>
@@ -20,6 +21,9 @@
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_faces">Украшения</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_animals">Животные</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_words">Слова</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_arrows">Стрелки</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_numbers">Цифры</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_other">Другое</string>
     <string name="materialcolorpicker__errHex">Неверный формат шестнадцатеричного кода</string>
     <string name="materialcolorpicker__btnSelectColor">Выбирать</string>
     <string name="iamutkarshtiwari_github_io_ananas_saving_image">Сохранение…</string>

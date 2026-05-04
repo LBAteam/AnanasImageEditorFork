@@ -6,6 +6,7 @@
     <string name="iamutkarshtiwari_github_io_ananas_apply">申し込み</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_stickers">ステッカー</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shapes">図形</string>
     <string name="iamutkarshtiwari_github_io_ananas_filter">フィルタ</string>
     <string name="iamutkarshtiwari_github_io_ananas_crop">トリム</string>
     <string name="iamutkarshtiwari_github_io_ananas_rotate">回る</string>
@@ -18,6 +19,9 @@
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_faces">デコレーション</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_animals">動物</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_words">言葉</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_arrows">矢印</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_numbers">数字</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_other">その他</string>
 
     <string name="materialcolorpicker__errHex">16進コード形式が正しくない</string>
     <string name="materialcolorpicker__btnSelectColor">選び出す</string>

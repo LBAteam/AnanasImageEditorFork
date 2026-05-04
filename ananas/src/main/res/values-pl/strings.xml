@@ -6,6 +6,7 @@
     <string name="iamutkarshtiwari_github_io_ananas_done">GOTOWE</string>
     <string name="iamutkarshtiwari_github_io_ananas_apply">ZASTOSUJ</string>
     <string name="iamutkarshtiwari_github_io_ananas_stickers">Naklejki</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shapes">Kształty</string>
     <string name="iamutkarshtiwari_github_io_ananas_filter">Filtry</string>
     <string name="iamutkarshtiwari_github_io_ananas_crop">Przytnij</string>
     <string name="iamutkarshtiwari_github_io_ananas_rotate">Obróć</string>
@@ -20,6 +21,9 @@
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_faces">Dekoracje</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_animals">Zwierzęta</string>
     <string name="iamutkarshtiwari_github_io_ananas_sticker_pack_words">Słowa</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_arrows">Strzałki</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_numbers">Numery</string>
+    <string name="iamutkarshtiwari_github_io_ananas_shape_pack_other">Inne</string>
     <string name="materialcolorpicker__errHex">Nieprawidłowy format kodu szesnastkowego</string>
     <string name="materialcolorpicker__btnSelectColor">Wybierz</string>
     <string name="iamutkarshtiwari_github_io_ananas_saving_image">Zapisywanie…</string>
