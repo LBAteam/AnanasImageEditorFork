@@ -3,6 +3,19 @@ All notable changes to this project will be documented in this file.
 
 # Released
 
+## [AnanasImageEditorFork 1.6.0]
+- Renamed the Edit instrument to Draw in all supported app languages.
+- Replaced dynamic sticker pack discovery with a static, translation-friendly sticker catalog.
+- Added localized sticker pack names from `strings.xml` instead of generic Type labels.
+- Fixed demo image picking and editor startup issues on newer Android versions.
+- Fixed sticker pack scrolling state so pack lists reopen from the beginning instead of preserving old offsets.
+- Fixed stale sticker previews by recreating the sticker adapter when switching sticker packs.
+- Reorganized sticker packs into Decoration, Animals and Words and removed the obsolete empty packs.
+- Added a new Shapes instrument with localized pack names for Arrows, Numbers and Other.
+- Added and populated the Arrows, Numbers and Other shape packs with the provided localized shape assets.
+- Reordered the editor instruments to Draw, Crop, Rotate, Shapes, Text, Stickers, Filters, Brightness, Saturation and Beauty.
+- Added the `EXPLICITLY_APPLY_CHANGES` build flag to toggle between explicit apply and implicit apply instrument behavior.
+
 ## [AnanasImageEditorFork 1.1.0]
 - Translated the strings to BG, DE, IT, PT, RU and corrected some of the EN strings
 
