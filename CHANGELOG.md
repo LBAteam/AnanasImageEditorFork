@@ -22,7 +22,7 @@ All notable changes to this project will be documented in this file.
 ## [AnanasImageEditorFork 1.0.0]
 - Increased targetSdk to 33
 - targetSdk 33: Permission READ_MEDIA_IMAGES used instead of READ_EXTERNAL_STORAGE, which is deprecated 
-- targetSdk 33: Permission WRITE_EXTERNAL_STORAGE not used becaused deprecated
+- targetSdk 33: Permission WRITE_EXTERNAL_STORAGE not used because deprecated
 - Updated the versions of the dependencies
 - Removed the kotlin stdlib dependency
 - Replaced the Cropper library with the currently supported one
