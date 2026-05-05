@@ -79,6 +79,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     public static final int MODE_BRIGHTNESS = 9;
     public static final int MODE_SATURATION = 10;
 
+    public String caption;
     public String sourceFilePath;
     public String outputFilePath;
     public String editorTitle;
@@ -90,6 +91,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     protected boolean isBeenSaved = false;
     protected boolean isPortraitForced = false;
     protected boolean isSupportActionBarEnabled = false;
+    protected boolean isCaptionFeatureEnabled = false;
     public CustomPaintView paintView;
     public ViewFlipper bannerFlipper;
     public BrightnessView brightnessView;
@@ -162,9 +164,11 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     private void getData() {
         isPortraitForced = getIntent().getBooleanExtra(ImageEditorIntentBuilder.FORCE_PORTRAIT, false);
         isSupportActionBarEnabled  = getIntent().getBooleanExtra(ImageEditorIntentBuilder.SUPPORT_ACTION_BAR_VISIBILITY, false);
+        isCaptionFeatureEnabled = getIntent().getBooleanExtra(ImageEditorIntentBuilder.CAPTION_FEATURE, false);
 
         sourceFilePath = getIntent().getStringExtra(ImageEditorIntentBuilder.SOURCE_PATH);
         outputFilePath = getIntent().getStringExtra(ImageEditorIntentBuilder.OUTPUT_PATH);
+        caption = getIntent().getStringExtra(ImageEditorIntentBuilder.CAPTION);
         editorTitle = getIntent().getStringExtra(ImageEditorIntentBuilder.EDITOR_TITLE);
     }
 
@@ -434,6 +438,9 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         returnIntent.putExtra(ImageEditorIntentBuilder.SOURCE_PATH, sourceFilePath);
         returnIntent.putExtra(ImageEditorIntentBuilder.OUTPUT_PATH, outputFilePath);
         returnIntent.putExtra(IS_IMAGE_EDITED, numberOfOperations > 0);
+        if (isCaptionFeatureEnabled) {
+            returnIntent.putExtra(ImageEditorIntentBuilder.CAPTION, caption);
+        }
 
         setResult(RESULT_OK, returnIntent);
         finish();
