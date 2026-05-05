@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import iamutkarshtiwari.github.io.ananas.R;
@@ -64,6 +66,22 @@ public class BrushConfigDialog extends BottomSheetDialogFragment implements Seek
             }
         });
         rvColor.setAdapter(colorPickerAdapter);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (getDialog() instanceof BottomSheetDialog) {
+            BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) getDialog();
+            View bottomSheet = bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null) {
+                BottomSheetBehavior<View> behavior = BottomSheetBehavior.from(bottomSheet);
+                behavior.setFitToContents(true);
+                behavior.setSkipCollapsed(true);
+                behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        }
     }
 
     void setPropertiesChangeListener(Properties properties) {

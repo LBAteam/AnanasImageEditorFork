@@ -127,7 +127,7 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
     private final class BackToMenuClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-            backToMain();
+            activity.onInstrumentBackPressed();
         }
     }
 
@@ -144,7 +144,7 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
 
         activity.mainImage.setVisibility(View.VISIBLE);
         activity.mainImage.setScaleEnabled(true);
-        activity.bannerFlipper.showPrevious();
+        activity.showMainAction();
     }
 
     @Override
@@ -153,7 +153,7 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
         activity.mainImage.setImageBitmap(activity.getMainBit());
         activity.mainImage.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
         activity.mainImage.setScaleEnabled(false);
-        activity.bannerFlipper.showNext();
+        activity.showInstrumentAction();
     }
 
     public void applyBeauty() {

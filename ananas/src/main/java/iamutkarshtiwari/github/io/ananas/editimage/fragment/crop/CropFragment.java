@@ -160,7 +160,7 @@ public class CropFragment extends BaseEditFragment {
         activity.mainImage.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
         activity.mainImage.setScaleEnabled(false);
 
-        activity.bannerFlipper.showNext();
+        activity.showInstrumentAction();
         cropPanel.setImageBitmap(activity.getMainBit());
         cropPanel.setFixedAspectRatio(false);
     }
@@ -169,7 +169,7 @@ public class CropFragment extends BaseEditFragment {
     private final class BackToMenuClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-            backToMain();
+            activity.onInstrumentBackPressed();
         }
     }
 
@@ -187,7 +187,7 @@ public class CropFragment extends BaseEditFragment {
             selectedTextView.setTextColor(getColorFromRes(UNSELECTED_COLOR));
         }
 
-        activity.bannerFlipper.showPrevious();
+        activity.showMainAction();
     }
 
 

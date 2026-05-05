@@ -65,7 +65,7 @@ public class FilterListFragment extends BaseEditFragment {
         filterRecyclerView.setAdapter(filterAdapter);
 
         View backBtn = mainView.findViewById(R.id.back_to_main);
-        backBtn.setOnClickListener(v -> backToMain());
+        backBtn.setOnClickListener(v -> activity.onInstrumentBackPressed());
     }
 
     @Override
@@ -75,7 +75,7 @@ public class FilterListFragment extends BaseEditFragment {
         activity.mainImage.setImageBitmap(activity.getMainBit());
         activity.mainImage.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
         activity.mainImage.setScaleEnabled(false);
-        activity.bannerFlipper.showNext();
+        activity.showInstrumentAction();
     }
 
     @Override
@@ -86,7 +86,7 @@ public class FilterListFragment extends BaseEditFragment {
         activity.mode = EditImageActivity.MODE_NONE;
         activity.bottomGallery.setCurrentItem(0);
         activity.mainImage.setScaleEnabled(true);
-        activity.bannerFlipper.showPrevious();
+        activity.showMainAction();
     }
 
     public void applyFilterImage() {

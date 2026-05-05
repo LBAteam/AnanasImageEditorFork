@@ -18,6 +18,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 36
         versionName "1.6.0"
+        buildConfigField "boolean", "EXPLICITLY_APPLY_CHANGES", "false"
     }
     buildTypes {
         release {
@@ -36,6 +37,7 @@ android {
         doNotStrip '*/mips/*.so'
     }
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
 

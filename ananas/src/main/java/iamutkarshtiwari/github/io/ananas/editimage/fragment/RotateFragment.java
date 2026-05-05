@@ -85,7 +85,7 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
 
         activity.rotatePanel.reset();
         activity.rotatePanel.setVisibility(View.VISIBLE);
-        activity.bannerFlipper.showNext();
+        activity.showInstrumentAction();
     }
 
     @Override
@@ -94,7 +94,7 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
         activity.bottomGallery.setCurrentItem(0);
         activity.mainImage.setVisibility(View.VISIBLE);
         this.rotatePanel.setVisibility(View.GONE);
-        activity.bannerFlipper.showPrevious();
+        activity.showMainAction();
     }
 
     @Override
@@ -106,7 +106,7 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
     private final class BackToMenuClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-            backToMain();
+            activity.onInstrumentBackPressed();
         }
     }
 

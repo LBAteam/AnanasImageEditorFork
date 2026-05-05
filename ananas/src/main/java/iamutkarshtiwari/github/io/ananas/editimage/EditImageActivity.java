@@ -33,6 +33,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.canhub.cropper.CropImageView;
 
 import iamutkarshtiwari.github.io.ananas.BaseActivity;
+import iamutkarshtiwari.github.io.ananas.BuildConfig;
 import iamutkarshtiwari.github.io.ananas.R;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.AddTextFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.BeautyFragment;
@@ -108,9 +109,11 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     protected int numberOfOperations = 0;
     private int imageWidth, imageHeight;
     private Bitmap mainBitmap;
+    private View applyBtn;
     private Dialog loadingDialog;
     private MainMenuFragment mainMenuFragment;
     private RedoUndoController redoUndoController;
+    private View saveBtn;
     private OnMainBitmapChangeListener onMainBitmapChangeListener;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -188,9 +191,9 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         bannerFlipper = findViewById(R.id.banner_flipper);
         bannerFlipper.setInAnimation(this, R.anim.in_bottom_to_top);
         bannerFlipper.setOutAnimation(this, R.anim.out_bottom_to_top);
-        View applyBtn = findViewById(R.id.apply);
+        applyBtn = findViewById(R.id.apply);
         applyBtn.setOnClickListener(new ApplyBtnClick());
-        View saveBtn = findViewById(R.id.save_btn);
+        saveBtn = findViewById(R.id.save_btn);
         saveBtn.setOnClickListener(new SaveBtnClick());
 
         mainImage = findViewById(R.id.main_image);
@@ -265,6 +268,77 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     public void onBackPressed() {
         switch (mode) {
             case MODE_STICKERS:
+            case MODE_SHAPES:
+            case MODE_FILTER:
+            case MODE_CROP:
+            case MODE_ROTATE:
+            case MODE_TEXT:
+            case MODE_PAINT:
+            case MODE_BEAUTY:
+            case MODE_BRIGHTNESS:
+            case MODE_SATURATION:
+                onInstrumentBackPressed();
+                break;
+            default:
+                if (canAutoExit()) {
+                    onSaveTaskDone();
+                } else {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                    alertDialogBuilder.setMessage(R.string.iamutkarshtiwari_github_io_ananas_exit_without_save)
+                            .setCancelable(false).setPositiveButton(R.string.iamutkarshtiwari_github_io_ananas_confirm, (dialog, id) -> finish()).setNegativeButton(R.string.iamutkarshtiwari_github_io_ananas_cancel, (dialog, id) -> dialog.cancel());
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }
+                break;
+        }
+    }
+
+    public boolean shouldExplicitlyApplyChanges() {
+        return BuildConfig.EXPLICITLY_APPLY_CHANGES;
+    }
+
+    public void onInstrumentBackPressed() {
+        if (shouldExplicitlyApplyChanges()) {
+            backOutOfInstrument();
+            return;
+        }
+
+        applyChangesForCurrentMode();
+    }
+
+    public void showInstrumentAction() {
+        if (bannerFlipper == null || saveBtn == null || applyBtn == null) {
+            return;
+        }
+
+        if (shouldExplicitlyApplyChanges()) {
+            bannerFlipper.setVisibility(View.VISIBLE);
+            applyBtn.setVisibility(View.VISIBLE);
+            saveBtn.setVisibility(View.GONE);
+            bannerFlipper.setDisplayedChild(1);
+        } else {
+            bannerFlipper.setVisibility(View.INVISIBLE);
+            saveBtn.setVisibility(View.GONE);
+            applyBtn.setVisibility(View.GONE);
+            bannerFlipper.setDisplayedChild(0);
+        }
+    }
+
+    public void showMainAction() {
+        if (bannerFlipper == null || saveBtn == null || applyBtn == null) {
+            return;
+        }
+
+        bannerFlipper.setVisibility(View.VISIBLE);
+        saveBtn.setVisibility(View.VISIBLE);
+        applyBtn.setVisibility(View.GONE);
+        bannerFlipper.setDisplayedChild(0);
+    }
+
+    private void backOutOfInstrument() {
+        switch (mode) {
+            case MODE_STICKERS:
                 stickerFragment.backToMain();
                 break;
             case MODE_SHAPES:
@@ -295,16 +369,43 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                 saturationFragment.backToMain();
                 break;
             default:
-                if (canAutoExit()) {
-                    onSaveTaskDone();
-                } else {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                    alertDialogBuilder.setMessage(R.string.iamutkarshtiwari_github_io_ananas_exit_without_save)
-                            .setCancelable(false).setPositiveButton(R.string.iamutkarshtiwari_github_io_ananas_confirm, (dialog, id) -> finish()).setNegativeButton(R.string.iamutkarshtiwari_github_io_ananas_cancel, (dialog, id) -> dialog.cancel());
+                break;
+        }
+    }
 
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
-                }
+    private void applyChangesForCurrentMode() {
+        switch (mode) {
+            case MODE_STICKERS:
+                stickerFragment.applyStickers();
+                break;
+            case MODE_SHAPES:
+                shapeFragment.applyShapes();
+                break;
+            case MODE_FILTER:
+                filterListFragment.applyFilterImage();
+                break;
+            case MODE_CROP:
+                cropFragment.applyCropImage();
+                break;
+            case MODE_ROTATE:
+                rotateFragment.applyRotateImage();
+                break;
+            case MODE_TEXT:
+                addTextFragment.applyTextImage();
+                break;
+            case MODE_PAINT:
+                paintFragment.savePaintImage();
+                break;
+            case MODE_BEAUTY:
+                beautyFragment.applyBeauty();
+                break;
+            case MODE_BRIGHTNESS:
+                brightnessFragment.applyBrightness();
+                break;
+            case MODE_SATURATION:
+                saturationFragment.applySaturation();
+                break;
+            default:
                 break;
         }
     }
@@ -511,40 +612,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     private final class ApplyBtnClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-            switch (mode) {
-                case MODE_STICKERS:
-                    stickerFragment.applyStickers();
-                    break;
-                case MODE_SHAPES:
-                    shapeFragment.applyShapes();
-                    break;
-                case MODE_FILTER:
-                    filterListFragment.applyFilterImage();
-                    break;
-                case MODE_CROP:
-                    cropFragment.applyCropImage();
-                    break;
-                case MODE_ROTATE:
-                    rotateFragment.applyRotateImage();
-                    break;
-                case MODE_TEXT:
-                    addTextFragment.applyTextImage();
-                    break;
-                case MODE_PAINT:
-                    paintFragment.savePaintImage();
-                    break;
-                case MODE_BEAUTY:
-                    beautyFragment.applyBeauty();
-                    break;
-                case MODE_BRIGHTNESS:
-                    brightnessFragment.applyBrightness();
-                    break;
-                case MODE_SATURATION:
-                    saturationFragment.applySaturation();
-                    break;
-                default:
-                    break;
-            }
+            applyChangesForCurrentMode();
         }
     }
 }

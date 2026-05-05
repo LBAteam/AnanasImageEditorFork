@@ -103,7 +103,7 @@ public class ShapeFragment extends BaseEditFragment {
         activity.mode = EditImageActivity.MODE_SHAPES;
         showShapeTypes();
         stickerView.setVisibility(View.VISIBLE);
-        activity.bannerFlipper.showNext();
+        activity.showInstrumentAction();
     }
 
     public void showShapeDetails(StickerPack shapePack) {
@@ -132,7 +132,7 @@ public class ShapeFragment extends BaseEditFragment {
         showShapeTypes();
         stickerView.clear();
         stickerView.setVisibility(View.GONE);
-        activity.bannerFlipper.showPrevious();
+        activity.showMainAction();
     }
 
     @Override
@@ -232,7 +232,7 @@ public class ShapeFragment extends BaseEditFragment {
     private final class BackToMenuClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-            backToMain();
+            activity.onInstrumentBackPressed();
         }
     }
 }

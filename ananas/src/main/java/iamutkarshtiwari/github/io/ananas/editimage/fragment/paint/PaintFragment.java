@@ -113,7 +113,7 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == backToMenu) {
-            backToMain();
+            activity.onInstrumentBackPressed();
         } else if (view == eraserView) {
             if (!isEraser) {
                 toggleButtons();
@@ -146,7 +146,7 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
         activity.mode = EditImageActivity.MODE_NONE;
         activity.bottomGallery.setCurrentItem(MainMenuFragment.INDEX);
         activity.mainImage.setVisibility(View.VISIBLE);
-        activity.bannerFlipper.showPrevious();
+        activity.showMainAction();
 
         customPaintView.reset();
         customPaintView.setVisibility(View.GONE);
@@ -155,7 +155,7 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
     public void onShow() {
         activity.mode = EditImageActivity.MODE_PAINT;
         activity.mainImage.setImageBitmap(activity.getMainBit());
-        activity.bannerFlipper.showNext();
+        activity.showInstrumentAction();
 
         customPaintView.setVisibility(View.VISIBLE);
     }

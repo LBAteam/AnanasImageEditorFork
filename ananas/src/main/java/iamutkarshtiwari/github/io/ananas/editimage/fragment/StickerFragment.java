@@ -108,7 +108,7 @@ public class StickerFragment extends BaseEditFragment {
         showStickerTypes();
         activity.stickerFragment.getStickerView().setVisibility(
                 View.VISIBLE);
-        activity.bannerFlipper.showNext();
+        activity.showInstrumentAction();
     }
 
     public void showStickerDetails(StickerPack stickerPack) {
@@ -137,7 +137,7 @@ public class StickerFragment extends BaseEditFragment {
     private final class BackToMenuClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-            backToMain();
+            activity.onInstrumentBackPressed();
         }
     }
 
@@ -160,7 +160,7 @@ public class StickerFragment extends BaseEditFragment {
         showStickerTypes();
         stickerView.clear();
         stickerView.setVisibility(View.GONE);
-        activity.bannerFlipper.showPrevious();
+        activity.showMainAction();
     }
 
     private void showStickerTypes() {

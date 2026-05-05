@@ -85,6 +85,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
             addedViews = new ArrayList<>();
 
             zoomLayout = activity.findViewById(R.id.text_sticker_panel_frame);
+            zoomLayout.setGesturesEnabled(false);
 
             View backToMenu = mainView.findViewById(R.id.back_to_main);
             backToMenu.setOnClickListener(new BackToMenuClick());
@@ -158,7 +159,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     private final class BackToMenuClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-            backToMain();
+            activity.onInstrumentBackPressed();
         }
     }
 
@@ -171,7 +172,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
             activity.mode = EditImageActivity.MODE_NONE;
             activity.bottomGallery.setCurrentItem(MainMenuFragment.INDEX);
             activity.mainImage.setVisibility(View.VISIBLE);
-            activity.bannerFlipper.showPrevious();
+            activity.showMainAction();
         }
         if (textStickersParentView != null) {
             textStickersParentView.setVisibility(View.GONE);
@@ -184,7 +185,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
             activity.mode = EditImageActivity.MODE_TEXT;
             activity.mainImage.setVisibility(View.GONE);
             textStickersParentView.updateImageBitmap(activity.getMainBit());
-            activity.bannerFlipper.showNext();
+            activity.showInstrumentAction();
             textStickersParentView.setVisibility(View.VISIBLE);
         }
 

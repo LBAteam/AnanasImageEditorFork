@@ -37,6 +37,7 @@ public class ZoomLayout extends FrameLayout implements ScaleGestureDetector.OnSc
     private boolean firstTouch = false;
     private long time = System.currentTimeMillis();
     private boolean restore = false;
+    private boolean gesturesEnabled = true;
 
     public ZoomLayout(Context context) {
         super(context);
@@ -57,6 +58,9 @@ public class ZoomLayout extends FrameLayout implements ScaleGestureDetector.OnSc
 
         final ScaleGestureDetector scaleDetector = new ScaleGestureDetector(context, this);
         setOnTouchListener((view, motionEvent) -> {
+            if (!gesturesEnabled) {
+                return false;
+            }
 
             switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
                 case MotionEvent.ACTION_DOWN:
@@ -113,6 +117,10 @@ public class ZoomLayout extends FrameLayout implements ScaleGestureDetector.OnSc
 
             return true;
         });
+    }
+
+    public void setGesturesEnabled(boolean gesturesEnabled) {
+        this.gesturesEnabled = gesturesEnabled;
     }
 
     public void setChildScale(float scaleFactor) {

@@ -85,7 +85,7 @@ public class SaturationFragment extends BaseEditFragment {
         activity.saturationView.setImageBitmap(activity.getMainBit());
         activity.saturationView.setVisibility(View.VISIBLE);
         initView();
-        activity.bannerFlipper.showNext();
+        activity.showInstrumentAction();
     }
 
     @Override
@@ -94,7 +94,7 @@ public class SaturationFragment extends BaseEditFragment {
         activity.bottomGallery.setCurrentItem(0);
         activity.mainImage.setVisibility(View.VISIBLE);
         activity.saturationView.setVisibility(View.GONE);
-        activity.bannerFlipper.showPrevious();
+        activity.showMainAction();
         activity.saturationView.setSaturation(INITIAL_SATURATION);
     }
 
@@ -115,7 +115,7 @@ public class SaturationFragment extends BaseEditFragment {
     private final class BackToMenuClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            backToMain();
+            activity.onInstrumentBackPressed();
         }
     }
 }
