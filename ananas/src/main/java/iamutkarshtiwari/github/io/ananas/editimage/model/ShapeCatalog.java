@@ -6,11 +6,13 @@ public final class ShapeCatalog {
     private static final StickerPack[] PACKS = new StickerPack[]{
             new StickerPack(
                     R.string.iamutkarshtiwari_github_io_ananas_shape_pack_arrows,
+                    R.drawable.shape_arrow_011,// red line
                     R.drawable.shape_arrow_01, // red thick right
                     R.drawable.shape_arrow_02, // red thick both directions
                     R.drawable.shape_arrow_05, // red simple right
                     R.drawable.shape_arrow_06, // red simple thick both directions
                     R.drawable.shape_arrow_09, // red very thick right
+                    R.drawable.shape_arrow_031,// blue line
                     R.drawable.shape_arrow_03, // blue thick right
                     R.drawable.shape_arrow_04, // blue thick both directions
                     R.drawable.shape_arrow_07, // blue simple right
