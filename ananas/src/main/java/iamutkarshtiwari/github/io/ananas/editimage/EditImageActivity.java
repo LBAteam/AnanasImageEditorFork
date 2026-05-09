@@ -71,6 +71,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class EditImageActivity extends BaseActivity implements OnLoadingDialogListener {
     public static final String IS_IMAGE_EDITED = "is_image_edited";
+    public static final String IS_CAPTION_EDITED = "is_caption_edited";
     public static final int MODE_NONE = 0;
     public static final int MODE_STICKERS = 1;
     public static final int MODE_SHAPES = 2;
@@ -115,6 +116,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     protected int numberOfOperations = 0;
     private int imageWidth, imageHeight;
     private Bitmap mainBitmap;
+    private String initialCaption;
     private View applyBtn;
     private View captionPanel;
     private TextView captionView;
@@ -175,6 +177,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         sourceFilePath = getIntent().getStringExtra(ImageEditorIntentBuilder.SOURCE_PATH);
         outputFilePath = getIntent().getStringExtra(ImageEditorIntentBuilder.OUTPUT_PATH);
         caption = getIntent().getStringExtra(ImageEditorIntentBuilder.CAPTION);
+        initialCaption = caption;
         editorTitle = getIntent().getStringExtra(ImageEditorIntentBuilder.EDITOR_TITLE);
     }
 
@@ -527,6 +530,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         returnIntent.putExtra(ImageEditorIntentBuilder.SOURCE_PATH, sourceFilePath);
         returnIntent.putExtra(ImageEditorIntentBuilder.OUTPUT_PATH, outputFilePath);
         returnIntent.putExtra(IS_IMAGE_EDITED, numberOfOperations > 0);
+        returnIntent.putExtra(IS_CAPTION_EDITED, isCaptionFeatureEnabled && !TextUtils.equals(initialCaption, caption));
         if (isCaptionFeatureEnabled) {
             returnIntent.putExtra(ImageEditorIntentBuilder.CAPTION, caption);
         }
