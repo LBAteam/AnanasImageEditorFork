@@ -15,7 +15,7 @@ All notable changes to this project will be documented in this file.
 - Added and populated the Arrows, Numbers and Other shape packs with the provided localized shape assets.
 - Reordered the editor instruments to Draw, Crop, Rotate, Shapes, Text, Stickers, Filters, Brightness, Saturation and Beauty.
 - Added the `EXPLICITLY_APPLY_CHANGES` build flag to toggle between explicit apply and implicit apply instrument behavior.
-- Added a new (pseudo) instrument CAPTION. The caption is a free text accompanying the image, i.e. it is not saved in the image. The caller can provide an existing caption. The resulting caption is returned to the caller.
+- Added a new (pseudo) instrument CAPTION. The caption is a free text accompanying the image, i.e. it is not saved in the image. The caller can provide an existing caption. The resulting caption is returned to the caller as well as a boolean flag IS_CAPTION_EDITED.
 
 ## [AnanasImageEditorFork 1.1.0]
 - Translated the strings to BG, DE, IT, PT, RU and corrected some of the EN strings
