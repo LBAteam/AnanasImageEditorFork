@@ -43,4 +43,8 @@
     <string name="iamutkarshtiwari_github_io_ananas_beauty">Kagandahan</string>
     <string name="iamutkarshtiwari_github_io_ananas_smooth">Kinis</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">Tono ng Balat</string>
+    <string name="media_fullscreen_add_caption">Magdagdag ng caption…</string>
+    <string name="dialog_edit_caption_add_caption_hint">Magdagdag ng caption…</string>
+    <string name="dialog_edit_caption_cancel">Kanselahin</string>
+    <string name="dialog_edit_caption_save">I-save</string>
 </resources>

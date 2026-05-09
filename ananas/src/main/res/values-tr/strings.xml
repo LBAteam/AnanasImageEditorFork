@@ -43,4 +43,8 @@
     <string name="iamutkarshtiwari_github_io_ananas_beauty">Güzellik</string>
     <string name="iamutkarshtiwari_github_io_ananas_smooth">Pürüzsüzlük</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">Cilt Tonu</string>
+    <string name="media_fullscreen_add_caption">Bir altyazı ekleyin…</string>
+    <string name="dialog_edit_caption_add_caption_hint">Bir altyazı ekleyin…</string>
+    <string name="dialog_edit_caption_cancel">İptal</string>
+    <string name="dialog_edit_caption_save">Kaydetmek</string>
 </resources>

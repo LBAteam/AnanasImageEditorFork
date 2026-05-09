@@ -43,4 +43,8 @@
     <string name="iamutkarshtiwari_github_io_ananas_beauty">Красота</string>
     <string name="iamutkarshtiwari_github_io_ananas_smooth">Гладкост</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">Цвят на кожата</string>
+    <string name="media_fullscreen_add_caption">Добави надпис…</string>
+    <string name="dialog_edit_caption_add_caption_hint">Добави надпис…</string>
+    <string name="dialog_edit_caption_cancel">Отказ</string>
+    <string name="dialog_edit_caption_save">Запази</string>
 </resources>

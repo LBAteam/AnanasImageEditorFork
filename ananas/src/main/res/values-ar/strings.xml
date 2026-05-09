@@ -79,4 +79,8 @@
     <string name="iamutkarshtiwari_github_io_ananas_smooth">نعومة</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">لون البشرة</string>
 
+    <string name="media_fullscreen_add_caption">أضف تسمية توضيحية…</string>
+    <string name="dialog_edit_caption_add_caption_hint">أضف تسمية توضيحية…</string>
+    <string name="dialog_edit_caption_cancel">إلغاء</string>
+    <string name="dialog_edit_caption_save">حفظ</string>
 </resources>

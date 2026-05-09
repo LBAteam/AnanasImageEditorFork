@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try {
             Intent intent = new ImageEditorIntentBuilder(this, path, outputFile.getAbsolutePath())
                     .withAddText()
+                    .withCaptionFeature()
                     .withPaintFeature()
                     .withFilterFeature()
                     .withRotateFeature()

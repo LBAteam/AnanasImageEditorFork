@@ -43,4 +43,8 @@
     <string name="iamutkarshtiwari_github_io_ananas_beauty">Bellezza</string>
     <string name="iamutkarshtiwari_github_io_ananas_smooth">Levigatezza</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">Il tono della pelle</string>
+    <string name="media_fullscreen_add_caption">Inserisci una didascalia…</string>
+    <string name="dialog_edit_caption_add_caption_hint">Inserisci una didascalia…</string>
+    <string name="dialog_edit_caption_cancel">Annulla</string>
+    <string name="dialog_edit_caption_save">Salva</string>
 </resources>

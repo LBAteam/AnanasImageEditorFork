@@ -29,6 +29,8 @@
     <string name="materialcolorpicker__btnSelectColor">Select</string>
     <string name="iamutkarshtiwari_github_io_ananas_saving_image">Saving…</string>
     <string name="iamutkarshtiwari_github_io_ananas_input_hint">Enter text…</string>
+    <string name="media_fullscreen_add_caption">Add a caption…</string>
+    <string name="dialog_edit_caption_add_caption_hint">Add a caption…</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_not_selected">Please choose an image to edit</string>
     <string name="iamutkarshtiwari_github_io_ananas_auto_newline" translatable="false">AutoNewline</string>
@@ -49,6 +51,8 @@
     <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">The edited image has not been saved. Do you want to exit?</string>
     <string name="iamutkarshtiwari_github_io_ananas_confirm">Confirm</string>
     <string name="iamutkarshtiwari_github_io_ananas_cancel">Cancel</string>
+    <string name="dialog_edit_caption_cancel">Cancel</string>
+    <string name="dialog_edit_caption_save">Save</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_beauty">Beauty</string>
     <string name="iamutkarshtiwari_github_io_ananas_smooth">Smoothness</string>

@@ -9,6 +9,8 @@
     <color name="hint_foreground_material_light">#00000000</color>
     <color name="text_color">#BEC2C4</color>
     <color name="text_color_gray_3">#A6A5A5</color>
+    <color name="bottom_actionbar_caption_theme_background_transparent_darker">#99000000</color>
+    <color name="grey_add_caption_text">#AAAAAA</color>
 
     <!--Kelly's 22 contrast colors-->
     <color name="kelly_1">#F2F3F4</color>

@@ -43,4 +43,8 @@
     <string name="iamutkarshtiwari_github_io_ananas_beauty">Upiększanie</string>
     <string name="iamutkarshtiwari_github_io_ananas_smooth">Gładkość</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">Odcień skóry</string>
+    <string name="media_fullscreen_add_caption">Dodaj podpis…</string>
+    <string name="dialog_edit_caption_add_caption_hint">Dodaj podpis…</string>
+    <string name="dialog_edit_caption_cancel">Anuluj</string>
+    <string name="dialog_edit_caption_save">Zapisz</string>
 </resources>

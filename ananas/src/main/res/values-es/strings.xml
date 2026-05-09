@@ -80,4 +80,8 @@
     <string name="iamutkarshtiwari_github_io_ananas_smooth">Suavidad</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">Tono de piel</string>
 
+    <string name="media_fullscreen_add_caption">Añade un pie de foto…</string>
+    <string name="dialog_edit_caption_add_caption_hint">Añade un pie de foto…</string>
+    <string name="dialog_edit_caption_cancel">Cancelar</string>
+    <string name="dialog_edit_caption_save">Guardar</string>
 </resources>

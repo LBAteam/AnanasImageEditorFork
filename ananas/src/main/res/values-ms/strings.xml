@@ -43,4 +43,8 @@
     <string name="iamutkarshtiwari_github_io_ananas_beauty">Kecantikan</string>
     <string name="iamutkarshtiwari_github_io_ananas_smooth">Kehalusan</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">Tona Kulit</string>
+    <string name="media_fullscreen_add_caption">Tambahkan kapsyen…</string>
+    <string name="dialog_edit_caption_add_caption_hint">Tambahkan kapsyen…</string>
+    <string name="dialog_edit_caption_cancel">Batal</string>
+    <string name="dialog_edit_caption_save">Jimat</string>
 </resources>

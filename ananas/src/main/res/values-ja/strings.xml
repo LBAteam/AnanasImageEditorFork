@@ -79,4 +79,8 @@
 
     <string name="iamutkarshtiwari_github_io_ananas_eraser">消しゴム</string>
     <string name="iamutkarshtiwari_github_io_ananas_brush">絵筆</string>
+    <string name="media_fullscreen_add_caption">キャプションを追加…</string>
+    <string name="dialog_edit_caption_add_caption_hint">キャプションを追加…</string>
+    <string name="dialog_edit_caption_cancel">取り消し</string>
+    <string name="dialog_edit_caption_save">保存</string>
 </resources>

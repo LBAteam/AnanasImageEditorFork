@@ -10,9 +10,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +25,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
@@ -112,6 +116,8 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     private int imageWidth, imageHeight;
     private Bitmap mainBitmap;
     private View applyBtn;
+    private View captionPanel;
+    private TextView captionView;
     private Dialog loadingDialog;
     private MainMenuFragment mainMenuFragment;
     private RedoUndoController redoUndoController;
@@ -199,6 +205,8 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         applyBtn.setOnClickListener(new ApplyBtnClick());
         saveBtn = findViewById(R.id.save_btn);
         saveBtn.setOnClickListener(new SaveBtnClick());
+        captionPanel = findViewById(R.id.caption_panel);
+        captionView = findViewById(R.id.caption_view);
 
         mainImage = findViewById(R.id.main_image);
 
@@ -240,6 +248,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         });
 
         redoUndoController = new RedoUndoController(this, findViewById(R.id.redo_undo_panel));
+        setupCaptionView();
 
         loadImageFromFile(sourceFilePath);
     }
@@ -316,6 +325,8 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
             return;
         }
 
+        setCaptionPanelVisible(false);
+
         if (shouldExplicitlyApplyChanges()) {
             bannerFlipper.setVisibility(View.VISIBLE);
             applyBtn.setVisibility(View.VISIBLE);
@@ -338,6 +349,84 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         saveBtn.setVisibility(View.VISIBLE);
         applyBtn.setVisibility(View.GONE);
         bannerFlipper.setDisplayedChild(0);
+        setCaptionPanelVisible(true);
+    }
+
+    private void setupCaptionView() {
+        if (captionPanel == null || captionView == null) {
+            return;
+        }
+
+        if (!isCaptionFeatureEnabled) {
+            captionView.setOnClickListener(null);
+            captionPanel.setVisibility(View.GONE);
+            return;
+        }
+
+        updateCaptionView();
+        captionView.setOnClickListener(v -> showEditCaptionDialog());
+        captionPanel.setVisibility(mode == MODE_NONE ? View.VISIBLE : View.GONE);
+    }
+
+    private void updateCaptionView() {
+        if (captionView == null) {
+            return;
+        }
+
+        if (TextUtils.isEmpty(caption)) {
+            captionView.setText(R.string.media_fullscreen_add_caption);
+            captionView.setTextColor(ContextCompat.getColor(this, R.color.grey_add_caption_text));
+        } else {
+            captionView.setText(caption);
+            captionView.setTextColor(ContextCompat.getColor(this, R.color.white));
+        }
+    }
+
+    private void setCaptionPanelVisible(boolean visible) {
+        if (captionPanel == null) {
+            return;
+        }
+
+        if (!isCaptionFeatureEnabled) {
+            captionPanel.setVisibility(View.GONE);
+            return;
+        }
+
+        captionPanel.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    private void showEditCaptionDialog() {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_edit_caption, null);
+        EditText captionEditText = dialogView.findViewById(R.id.editText_media_caption);
+        captionEditText.setText(caption);
+        captionEditText.setSelection(0);
+        boolean shouldShowKeyboard = TextUtils.isEmpty(caption);
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setCancelable(false)
+                .setNegativeButton(R.string.dialog_edit_caption_cancel, (dialogInterface, which) -> dialogInterface.dismiss())
+                .setPositiveButton(R.string.dialog_edit_caption_save, null)
+                .create();
+
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setOnShowListener(dialogInterface -> {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+                caption = captionEditText.getText().toString();
+                updateCaptionView();
+                dialog.dismiss();
+            });
+
+            if (shouldShowKeyboard) {
+                captionEditText.requestFocus();
+                InputMethodManager inputMethodManager =
+                        (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (inputMethodManager != null) {
+                    inputMethodManager.showSoftInput(captionEditText, InputMethodManager.SHOW_IMPLICIT);
+                }
+            }
+        });
+        dialog.show();
     }
 
     private void backOutOfInstrument() {

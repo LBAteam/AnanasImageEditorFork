@@ -143,10 +143,32 @@
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/caption_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_gallery"
+        android:background="@color/bottom_actionbar_caption_theme_background_transparent_darker"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/caption_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/redo_undo_panel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/bottom_gallery"
+        android:layout_above="@id/caption_panel"
         android:layout_alignParentRight="true"
         android:orientation="horizontal"
         android:paddingBottom="16dp"
